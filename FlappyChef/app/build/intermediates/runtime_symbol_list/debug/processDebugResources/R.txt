@@ -1447,6 +1447,7 @@ int string switch_role 0x7f0d0085
 int string tab 0x7f0d0086
 int string template_percent 0x7f0d0087
 int string title_activity_game 0x7f0d0088
+int string title_activity_gameOver 0x7f0d008d
 int string title_activity_instructions 0x7f0d0089
 int string title_activity_settings 0x7f0d008a
 int string tooltip_description 0x7f0d008b

@@ -17,6 +17,12 @@
             android:exported="false"
             android:label="@string/title_activity_game"
             android:theme="@style/Theme.FlappyChef" />
+
+        <activity
+            android:name=".GameOverActivity"
+            android:exported="false"
+            android:label="@string/title_activity_gameOver"
+            android:theme="@style/Theme.FlappyChef" />
         <activity
             android:name=".SettingsActivity"
             android:exported="false"

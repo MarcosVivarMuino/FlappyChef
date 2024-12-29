@@ -15,6 +15,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
 string title_activity_game
+string title_activity_gameOver
 string title_activity_instructions
 string title_activity_settings
 style Theme.FlappyChef

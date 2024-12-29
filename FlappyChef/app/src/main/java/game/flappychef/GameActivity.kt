@@ -1,7 +1,6 @@
 package game.flappychef
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,110 +9,64 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import java.util.Calendar
 import kotlin.random.Random
-
-
 
 class GameActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
-            GameScreen()
+            GameScreen(
+                onGameOver = {
+                    // Aquí no terminamos la actividad, simplemente mostramos la pantalla Game Over
+                    val intent = Intent(this, GameOverActivity::class.java)
+                    startActivity(intent)
+                }
+            )
         }
     }
 }
-
-
 @Composable
-fun GameScreen() {
+fun GameScreen(onGameOver: () -> Unit) {
     var playerY by remember { mutableStateOf(500f) }
     var velocity by remember { mutableStateOf(0f) }
-    var isGameOver by remember { mutableStateOf(false) }
 
     val gravity = 1f
     val jumpForce = -15f
+    val obstacles = remember { mutableStateListOf<Obstacle>() }
+    val obstacleWidth = 100f
+    val obstacleGap = 700f
 
-    // Obtener las dimensiones reales de la pantalla en píxeles
     val configuration = LocalConfiguration.current
-    val screenHeightDp = configuration.screenHeightDp
-    val screenHeightPx = with(LocalDensity.current) { screenHeightDp.dp.toPx() }
+    val screenHeightPx = with(LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
+    val screenWidthPx = with(LocalDensity.current) { configuration.screenWidthDp.dp.toPx() }
 
-    val screenWidthDp = configuration.screenWidthDp
-    val screenWidthPx = with(LocalDensity.current) { screenWidthDp.dp.toPx() }
-
-    // Obtener hora actual
-    val currentHour = remember { Calendar.getInstance().get(Calendar.HOUR_OF_DAY) }
-
-    // Seleccionar el fondo según la hora
+    // Obtener la hora actual y determinar el fondo
+    val currentHour = remember { Random.nextInt(0, 24) }
     val backgroundRes = if (currentHour in 8..17) {
         R.drawable.fondo_dia // Fondo de día
     } else {
         R.drawable.fondo_noche // Fondo de noche
     }
 
-    Box(
-        Modifier
-            .fillMaxSize()
-            .background(Color.Cyan)
-    ) {
-        // Dibujar el fondo adaptado a la pantalla
-        Image(
-            painter = painterResource(id = backgroundRes),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),  // Asegura que la imagen ocupe toda la pantalla
-            contentScale = ContentScale.Crop   // Asegura que la imagen cubra completamente el fondo, recortándola si es necesario
-        )
-
-        // Todo lo demás (personaje, obstáculos, etc.)
-        GameContent(
-            screenHeightPx = screenHeightPx,
-            screenWidthPx = screenWidthPx,
-            onGameOver = { isGameOver = true } // Llamar la función cuando el juego termine
-        )
-    }
-}
-
-@Composable
-fun GameContent(screenHeightPx: Float, screenWidthPx: Float, onGameOver: () -> Unit) {
-    var playerY by remember { mutableStateOf(500f) }
-    var velocity by remember { mutableStateOf(0f) }
-    var isGameOver by remember { mutableStateOf(false) }
-
-    val gravity = 1f
-    val jumpForce = -15f
-    val obstacles = remember { mutableStateListOf<Obstacle>() }
-
-    // Dimensiones de los obstáculos
-    val obstacleWidth = 100f
-    val obstacleGap = 300f // Aumentar el hueco entre los obstáculos
-
-    // Generar obstáculos cada cierto tiempo
+    // Generar obstáculos periódicamente
     LaunchedEffect(Unit) {
-        while (!isGameOver) {
-            delay(1500L) // Aproximadamente un obstáculo cada 1.5 segundos
-
-            // Crear un nuevo obstáculo
+        while (true) {
+            delay(1500L)
             obstacles.add(
                 Obstacle(
                     x = screenWidthPx.toInt(),
@@ -123,69 +76,55 @@ fun GameContent(screenHeightPx: Float, screenWidthPx: Float, onGameOver: () -> U
         }
     }
 
-    // Actualizar posición de los obstáculos
+    // Actualizar posición de obstáculos
     LaunchedEffect(Unit) {
-        while (!isGameOver) {
-            delay(10L) // ~60 FPS
+        while (true) {
+            delay(10L)
             for (obstacle in obstacles) {
-                obstacle.x -= 5 // Mover los obstáculos hacia el personaje
+                obstacle.x -= 5
             }
-
-            // Eliminar obstáculos que ya no son visibles
             obstacles.removeAll { it.x < -obstacleWidth }
         }
     }
 
-    // Lógica de movimiento del jugador
+    // Movimiento del jugador y detección de colisiones
     LaunchedEffect(Unit) {
-        while (!isGameOver) {
-            delay(10L) // ~60 FPS
+        while (true) {
+            delay(10L)
             playerY += velocity
             velocity += gravity
 
-            // Detectar si la bola toca el suelo o el techo
-            if (playerY >= screenHeightPx - 50f) { // 50f es el radio del personaje
-                playerY = screenHeightPx - 50f // Coloca al jugador en el suelo
-                velocity = 0f // Detener el movimiento vertical
-                onGameOver() // Terminar el juego
+            // Terminar el juego si el jugador sale de los límites
+            if (playerY >= screenHeightPx - 50f || playerY <= 0f) {
+                onGameOver()
+                break
             }
 
-            if (playerY <= 0f) {
-                playerY = 0f // No dejar que pase del techo
-                velocity = 0f // Detener el movimiento vertical
-                onGameOver() // Terminar el juego
-            }
-
-            // Detectar colisiones con obstáculos
-            for (obstacle in obstacles) {
-                val upperObstacleHeight = obstacle.gapPosition.toFloat()
-                val lowerObstacleHeight = screenHeightPx - (obstacle.gapPosition + obstacleGap).toFloat()
-
-                // Verificar colisión con el obstáculo superior
-                if (playerY - 50f < upperObstacleHeight && playerY + 50f > 0f && 300f + 50f > obstacle.x && 300f - 50f < obstacle.x + obstacleWidth) {
-                    onGameOver() // Terminar el juego
-                }
-
-                // Verificar colisión con el obstáculo inferior
-                if (playerY + 50f > obstacle.gapPosition + obstacleGap && playerY - 50f < screenHeightPx && 300f + 50f > obstacle.x && 300f - 50f < obstacle.x + obstacleWidth) {
-                    onGameOver() // Terminar el juego
-                }
+            // Verificar colisiones con obstáculos
+            if (checkCollisions(playerY, obstacles, screenHeightPx, obstacleWidth, obstacleGap)) {
+                onGameOver()
+                break
             }
         }
     }
 
+    // Dibujo de la pantalla del juego
     Box(
         Modifier
             .fillMaxSize()
             .pointerInput(Unit) {
-                detectTapGestures {
-                    if (!isGameOver) {
-                        velocity = jumpForce // Aplicar fuerza de salto cuando se toca la pantalla
-                    }
-                }
+                detectTapGestures { velocity = jumpForce }
             }
     ) {
-        // Dibujar personaje
+        // Fondo
+        Image(
+            painter = painterResource(id = backgroundRes),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
+        // Jugador
         Canvas(Modifier.fillMaxSize()) {
             drawCircle(
                 color = Color.Red,
@@ -194,50 +133,66 @@ fun GameContent(screenHeightPx: Float, screenWidthPx: Float, onGameOver: () -> U
             )
         }
 
-        // Dibujar obstáculos
+        // Obstáculos
         for (obstacle in obstacles) {
             val upperObstacleHeight = obstacle.gapPosition.toFloat()
             val lowerObstacleHeight = screenHeightPx - (obstacle.gapPosition + obstacleGap).toFloat()
 
             Canvas(Modifier.fillMaxSize()) {
-                // Torre superior
                 drawRect(
                     color = Color.Green,
                     topLeft = Offset(obstacle.x.toFloat(), 0f),
                     size = androidx.compose.ui.geometry.Size(obstacleWidth, upperObstacleHeight)
                 )
-                // Torre inferior
                 drawRect(
                     color = Color.Green,
-                    topLeft = Offset(
-                        obstacle.x.toFloat(),
-                        obstacle.gapPosition + obstacleGap
-                    ),
-                    size = androidx.compose.ui.geometry.Size(
-                        obstacleWidth,
-                        lowerObstacleHeight
-                    )
-                )
-            }
-        }
-
-        // Si el juego ha terminado, mostrar pantalla de Game Over
-        if (isGameOver) {
-            Box(
-                Modifier
-                    .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.5f))
-            ) {
-                Text(
-                    text = "Game Over",
-                    fontSize = 32.sp,
-                    color = Color.White,
-                    modifier = Modifier.align(Alignment.Center),
-                    textAlign = TextAlign.Center
+                    topLeft = Offset(obstacle.x.toFloat(), obstacle.gapPosition + obstacleGap),
+                    size = androidx.compose.ui.geometry.Size(obstacleWidth, lowerObstacleHeight)
                 )
             }
         }
     }
+}
+
+// Función para detectar colisiones entre el jugador y los obstáculos
+fun checkCollisions(playerY: Float, obstacles: List<Obstacle>, screenHeightPx: Float, obstacleWidth: Float, obstacleGap: Float): Boolean {
+    val playerLeft = 300f - 50f
+    val playerRight = 300f + 50f
+    val playerTop = playerY - 50f
+    val playerBottom = playerY + 50f
+
+    for (obstacle in obstacles) {
+        val upperObstacleHeight = obstacle.gapPosition.toFloat()
+        val lowerObstacleHeight = screenHeightPx - (obstacle.gapPosition + obstacleGap).toFloat()
+
+        val upperObstacleLeft = obstacle.x
+        val upperObstacleRight = obstacle.x + obstacleWidth
+        val upperObstacleTop = 0f
+        val upperObstacleBottom = upperObstacleHeight
+
+        val lowerObstacleLeft = obstacle.x
+        val lowerObstacleRight = obstacle.x + obstacleWidth
+        val lowerObstacleTop = obstacle.gapPosition + obstacleGap
+        val lowerObstacleBottom = screenHeightPx
+
+        // Verificar colisión con el obstáculo superior
+        val collidesWithUpperObstacle = playerRight > upperObstacleLeft &&
+                playerLeft < upperObstacleRight &&
+                playerBottom > upperObstacleTop &&
+                playerTop < upperObstacleBottom
+
+        // Verificar colisión con el obstáculo inferior
+        val collidesWithLowerObstacle = playerRight > lowerObstacleLeft &&
+                playerLeft < lowerObstacleRight &&
+                playerBottom > lowerObstacleTop &&
+                playerTop < lowerObstacleBottom
+
+        if (collidesWithUpperObstacle || collidesWithLowerObstacle) {
+            return true
+        }
+    }
+
+    return false
 }
 
 // Clase para definir obstáculos

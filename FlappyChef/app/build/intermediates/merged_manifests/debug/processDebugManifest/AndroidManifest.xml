@@ -33,6 +33,11 @@
             android:label="@string/title_activity_game"
             android:theme="@style/Theme.FlappyChef" />
         <activity
+            android:name="game.flappychef.GameOverActivity"
+            android:exported="false"
+            android:label="@string/title_activity_gameOver"
+            android:theme="@style/Theme.FlappyChef" />
+        <activity
             android:name="game.flappychef.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"

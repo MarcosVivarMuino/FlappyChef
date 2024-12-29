@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">FlappyChef</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_gameOver">GameOverActivity</string>
     <string name="title_activity_instructions">InstructionsActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <style name="Theme.FlappyChef" parent="android:Theme.Material.Light.NoActionBar"/>

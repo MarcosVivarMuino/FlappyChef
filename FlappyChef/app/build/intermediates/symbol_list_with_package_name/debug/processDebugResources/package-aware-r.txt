@@ -1448,6 +1448,7 @@ string switch_role
 string tab
 string template_percent
 string title_activity_game
+string title_activity_gameOver
 string title_activity_instructions
 string title_activity_settings
 string tooltip_description
