@@ -28,6 +28,11 @@
         android:testOnly="true"
         android:theme="@style/Theme.FlappyChef" >
         <activity
+            android:name="game.flappychef.GameActivity"
+            android:exported="false"
+            android:label="@string/title_activity_game"
+            android:theme="@style/Theme.FlappyChef" />
+        <activity
             android:name="game.flappychef.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"

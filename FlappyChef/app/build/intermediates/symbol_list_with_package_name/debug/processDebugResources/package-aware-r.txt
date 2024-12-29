@@ -958,6 +958,8 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable fondo_dia
+drawable fondo_noche
 drawable ic_call_answer
 drawable ic_call_answer_low
 drawable ic_call_answer_video
@@ -1445,6 +1447,7 @@ string status_bar_notification_info_overflow
 string switch_role
 string tab
 string template_percent
+string title_activity_game
 string title_activity_instructions
 string title_activity_settings
 string tooltip_description

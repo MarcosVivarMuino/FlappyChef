@@ -6,18 +6,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.material3.lightColorScheme
-import androidx.compose.material3.Typography
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.TextStyle
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +26,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             GameTheme {
                 MainMenuScreen(
-                    onPlayClick = { /* TODO: Navegar a pantalla de juego */ },
+                    onPlayClick = {
+                        val intent = Intent(this, GameActivity::class.java)
+                        startActivity(intent)
+                    },
                     onInstructionsClick = {
                         val intent = Intent(this, InstructionsActivity::class.java)
                         startActivity(intent)
@@ -42,13 +46,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GameTheme(content: @Composable () -> Unit) {
-    val colors = lightColorScheme(
-        primary = androidx.compose.ui.graphics.Color(0xFF6200EE),
-        secondary = androidx.compose.ui.graphics.Color(0xFF03DAC6)
-    )
-
     MaterialTheme(
-        colorScheme = colors,
+        colorScheme = lightColorScheme(
+            primary = Color(0xFFFF5722),  // Naranja brillante
+            secondary = Color(0xFF4CAF50), // Verde
+            background = Color(0xFFF8E4A7), // Amarillo suave para el fondo
+            surface = Color(0xFFFFFFFF),  // Blanco para los botones
+            onPrimary = Color.White, // Texto blanco sobre el fondo naranja
+            onSecondary = Color.White // Texto blanco sobre el verde
+        ),
         typography = Typography(),
         content = content
     )
@@ -61,35 +67,88 @@ fun MainMenuScreen(
     onSettingsClick: () -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly
+        verticalArrangement = Arrangement.Center
     ) {
-        // Título
+        // Título con estilo más divertido y colores llamativos
         Text(
-            text = "Mi Juego",
-            fontSize = 36.sp,
-            style = MaterialTheme.typography.headlineMedium
+            text = "Flappy Chef",
+            fontSize = 48.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary,
+            style = TextStyle(letterSpacing = 3.sp)
         )
 
-        // Imagen central
+        Spacer(modifier = Modifier.height(32.dp))
+
+        // Imagen central relacionada con la temática de un cocinero
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground), // Cambia por tu imagen
+            painter = painterResource(id = R.drawable.ic_launcher_foreground), // Cambia por una imagen de un chef volador
             contentDescription = "Imagen del juego",
-            modifier = Modifier.size(200.dp)
+            modifier = Modifier
+                .size(250.dp)
+                .padding(16.dp) // Espacio alrededor de la imagen
         )
 
-        // Botones
-        Button(onClick = onPlayClick, modifier = Modifier.padding(8.dp)) {
-            Text(text = "Jugar")
+        Spacer(modifier = Modifier.height(40.dp))
+
+        // Botones con bordes redondeados y colores vivos
+        Button(
+            onClick = onPlayClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .padding(8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Text(
+                text = "Jugar",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
         }
 
-        Button(onClick = onInstructionsClick, modifier = Modifier.padding(8.dp)) {
-            Text(text = "Instrucciones")
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Button(
+            onClick = onInstructionsClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .padding(8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Text(
+                text = "Instrucciones",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
         }
 
-        Button(onClick = onSettingsClick, modifier = Modifier.padding(8.dp)) {
-            Text(text = "Ajustes")
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Button(
+            onClick = onSettingsClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .padding(8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Text(
+                text = "Ajustes",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
         }
     }
 }

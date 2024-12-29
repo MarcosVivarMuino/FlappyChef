@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:1-38:12
+ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:1-43:12
 MERGED from [com.karumi:dexter:6.2.3] C:\Users\marco\.gradle\caches\8.9\transforms\14993529eb6de077a9916bebbd9a25f8\transformed\dexter-6.2.3\AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\marco\.gradle\caches\8.9\transforms\845ae2d5e965ba10b79e6a879acfb5c3\transformed\material-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\marco\.gradle\caches\8.9\transforms\195b37cefafa6fb9e7d442f779acce13\transformed\appcompat-1.0.2\AndroidManifest.xml:17:1-22:12
@@ -87,8 +87,8 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\marco\.gradle\cache
 	xmlns:android
 		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:5:5-36:19
-INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:5:5-36:19
+ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:5:5-41:19
+INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:5:5-41:19
 MERGED from [com.karumi:dexter:6.2.3] C:\Users\marco\.gradle\caches\8.9\transforms\14993529eb6de077a9916bebbd9a25f8\transformed\dexter-6.2.3\AndroidManifest.xml:26:5-30:19
 MERGED from [com.karumi:dexter:6.2.3] C:\Users\marco\.gradle\caches\8.9\transforms\14993529eb6de077a9916bebbd9a25f8\transformed\dexter-6.2.3\AndroidManifest.xml:26:5-30:19
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\marco\.gradle\caches\8.9\transforms\845ae2d5e965ba10b79e6a879acfb5c3\transformed\material-1.0.0\AndroidManifest.xml:22:5-20
@@ -131,46 +131,56 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\marco\.gradle\cach
 		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:13:9-48
 	android:dataExtractionRules
 		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:7:9-65
-activity#game.flappychef.SettingsActivity
+activity#game.flappychef.GameActivity
 ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:15:9-19:55
 	android:label
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:18:13-60
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:18:13-56
 	android:exported
 		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:17:13-37
 	android:theme
 		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:19:13-52
 	android:name
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:16:13-45
-activity#game.flappychef.InstructionsActivity
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:16:13-41
+activity#game.flappychef.SettingsActivity
 ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:20:9-24:55
 	android:label
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:23:13-64
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:23:13-60
 	android:exported
 		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:22:13-37
 	android:theme
 		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:24:13-52
 	android:name
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:21:13-49
-activity#game.flappychef.MainActivity
-ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:25:9-35:20
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:21:13-45
+activity#game.flappychef.InstructionsActivity
+ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:25:9-29:55
 	android:label
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:28:13-45
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:28:13-64
 	android:exported
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:27:13-36
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:27:13-37
 	android:theme
 		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:29:13-52
 	android:name
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:26:13-41
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:26:13-49
+activity#game.flappychef.MainActivity
+ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:30:9-40:20
+	android:label
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:33:13-45
+	android:exported
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:32:13-36
+	android:theme
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:34:13-52
+	android:name
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:31:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:30:13-34:29
+ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:35:13-39:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:31:17-69
+ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:36:17-69
 	android:name
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:31:25-66
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:36:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:33:17-77
+ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:38:17-77
 	android:name
-		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:33:27-74
+		ADDED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:38:27-74
 uses-sdk
 INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml
