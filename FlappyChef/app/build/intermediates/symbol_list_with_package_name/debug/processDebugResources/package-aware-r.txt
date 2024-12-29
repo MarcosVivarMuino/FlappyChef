@@ -1446,6 +1446,7 @@ string switch_role
 string tab
 string template_percent
 string title_activity_instructions
+string title_activity_settings
 string tooltip_description
 string tooltip_label
 style AlertDialog_AppCompat

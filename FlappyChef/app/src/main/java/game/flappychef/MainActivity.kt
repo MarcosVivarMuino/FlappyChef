@@ -30,7 +30,10 @@ class MainActivity : ComponentActivity() {
                         val intent = Intent(this, InstructionsActivity::class.java)
                         startActivity(intent)
                     },
-                    onSettingsClick = { /* TODO: Ir a ajustes */ }
+                    onSettingsClick = {
+                        val intent = Intent(this, SettingsActivity::class.java)
+                        startActivity(intent)
+                    }
                 )
             }
         }

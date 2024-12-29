@@ -1444,9 +1444,10 @@ int string status_bar_notification_info_overflow 0x7f0d0084
 int string switch_role 0x7f0d0085
 int string tab 0x7f0d0086
 int string template_percent 0x7f0d0087
-int string title_activity_instructions 0x7f0d008a
-int string tooltip_description 0x7f0d0088
-int string tooltip_label 0x7f0d0089
+int string title_activity_instructions 0x7f0d0088
+int string title_activity_settings 0x7f0d0089
+int string tooltip_description 0x7f0d008a
+int string tooltip_label 0x7f0d008b
 int style AlertDialog_AppCompat 0x7f0e0000
 int style AlertDialog_AppCompat_Light 0x7f0e0001
 int style Animation_AppCompat_Dialog 0x7f0e0002
