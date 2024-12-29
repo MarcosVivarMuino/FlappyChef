@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">FlappyChef</string>
     <string name="title_activity_instructions">InstructionsActivity</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_gameOver">GameOverActivity</string>
 </resources>

@@ -20,6 +20,10 @@
         "source": "game.flappychef.app-main-55:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "game.flappychef.app-debug-53:/drawable_fondo_dia.png.flat",
+        "source": "game.flappychef.app-main-55:/drawable/fondo_dia.png"
+    },
+    {
         "merged": "game.flappychef.app-debug-53:/drawable_ic_launcher_background.xml.flat",
         "source": "game.flappychef.app-main-55:/drawable/ic_launcher_background.xml"
     },
@@ -50,6 +54,10 @@
     {
         "merged": "game.flappychef.app-debug-53:/mipmap-xxhdpi_ic_launcher.webp.flat",
         "source": "game.flappychef.app-main-55:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "game.flappychef.app-debug-53:/drawable_fondo_noche.png.flat",
+        "source": "game.flappychef.app-main-55:/drawable/fondo_noche.png"
     },
     {
         "merged": "game.flappychef.app-debug-53:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",

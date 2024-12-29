@@ -957,6 +957,8 @@ int drawable design_ic_visibility 0x7f07005f
 int drawable design_ic_visibility_off 0x7f070060
 int drawable design_password_eye 0x7f070061
 int drawable design_snackbar_background 0x7f070062
+int drawable fondo_dia 0x7f070080
+int drawable fondo_noche 0x7f070081
 int drawable ic_call_answer 0x7f070063
 int drawable ic_call_answer_low 0x7f070064
 int drawable ic_call_answer_video 0x7f070065
@@ -1444,9 +1446,11 @@ int string status_bar_notification_info_overflow 0x7f0d0084
 int string switch_role 0x7f0d0085
 int string tab 0x7f0d0086
 int string template_percent 0x7f0d0087
-int string title_activity_instructions 0x7f0d008a
-int string tooltip_description 0x7f0d0088
-int string tooltip_label 0x7f0d0089
+int string title_activity_game 0x7f0d0088
+int string title_activity_gameOver 0x7f0d008c
+int string title_activity_instructions 0x7f0d0089
+int string tooltip_description 0x7f0d008a
+int string tooltip_label 0x7f0d008b
 int style AlertDialog_AppCompat 0x7f0e0000
 int style AlertDialog_AppCompat_Light 0x7f0e0001
 int style Animation_AppCompat_Dialog 0x7f0e0002

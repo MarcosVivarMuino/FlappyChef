@@ -1,9 +1,9 @@
-#Sat Dec 28 14:11:01 CET 2024
-base.0=C\:\\Users\\marco\\OneDrive\\Escritorio\\Estudio_Trabajos\\Cuarto\\Moviles\\FlappyChef\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\marco\\OneDrive\\Escritorio\\Estudio_Trabajos\\Cuarto\\Moviles\\FlappyChef\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\marco\\OneDrive\\Escritorio\\Estudio_Trabajos\\Cuarto\\Moviles\\FlappyChef\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
-base.3=C\:\\Users\\marco\\OneDrive\\Escritorio\\Estudio_Trabajos\\Cuarto\\Moviles\\FlappyChef\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
-base.4=C\:\\Users\\marco\\OneDrive\\Escritorio\\Estudio_Trabajos\\Cuarto\\Moviles\\FlappyChef\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Sun Dec 29 13:46:03 CET 2024
+base.0=D\:\\UNIVERSIDAD\\4\\1_Cuatri\\Moviles\\FlappyChefRepositorio\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=D\:\\UNIVERSIDAD\\4\\1_Cuatri\\Moviles\\FlappyChefRepositorio\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=D\:\\UNIVERSIDAD\\4\\1_Cuatri\\Moviles\\FlappyChefRepositorio\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.3=D\:\\UNIVERSIDAD\\4\\1_Cuatri\\Moviles\\FlappyChefRepositorio\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
+base.4=D\:\\UNIVERSIDAD\\4\\1_Cuatri\\Moviles\\FlappyChefRepositorio\\FlappyChef\\FlappyChef\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=10/classes.dex

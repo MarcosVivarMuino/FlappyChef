@@ -28,6 +28,16 @@
         android:testOnly="true"
         android:theme="@style/Theme.FlappyChef" >
         <activity
+            android:name="game.flappychef.GameOverActivity"
+            android:exported="false"
+            android:label="@string/title_activity_gameOver"
+            android:theme="@style/Theme.FlappyChef" />
+        <activity
+            android:name="game.flappychef.GameActivity"
+            android:exported="false"
+            android:label="@string/title_activity_game"
+            android:theme="@style/Theme.FlappyChef" />
+        <activity
             android:name="game.flappychef.InstructionsActivity"
             android:exported="false"
             android:label="@string/title_activity_instructions"
@@ -44,14 +54,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karumi.dexter.DexterActivity"
-            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+            android:name="androidx.compose.ui.tooling.PreviewActivity"
+            android:exported="true" />
         <activity
             android:name="androidx.activity.ComponentActivity"
             android:exported="true" />
         <activity
-            android:name="androidx.compose.ui.tooling.PreviewActivity"
-            android:exported="true" />
+            android:name="com.karumi.dexter.DexterActivity"
+            android:theme="@style/Dexter.Internal.Theme.Transparent" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

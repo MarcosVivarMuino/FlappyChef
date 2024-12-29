@@ -9,154 +9,174 @@
 9        android:targetSdkVersion="34" />
 10
 11    <permission
-11-->[androidx.core:core:1.13.1] C:\Users\marco\.gradle\caches\8.9\transforms\7eb50eda3edf4ddf50edc72949ebb615\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+11-->[androidx.core:core:1.13.1] C:\Users\danie\.gradle\caches\8.9\transforms\0dd7b2eaeb78314a58ca2e66b30eeda4\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
 12        android:name="game.flappychef.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-12-->[androidx.core:core:1.13.1] C:\Users\marco\.gradle\caches\8.9\transforms\7eb50eda3edf4ddf50edc72949ebb615\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+12-->[androidx.core:core:1.13.1] C:\Users\danie\.gradle\caches\8.9\transforms\0dd7b2eaeb78314a58ca2e66b30eeda4\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
 13        android:protectionLevel="signature" />
-13-->[androidx.core:core:1.13.1] C:\Users\marco\.gradle\caches\8.9\transforms\7eb50eda3edf4ddf50edc72949ebb615\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+13-->[androidx.core:core:1.13.1] C:\Users\danie\.gradle\caches\8.9\transforms\0dd7b2eaeb78314a58ca2e66b30eeda4\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
 14
 15    <uses-permission android:name="game.flappychef.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-15-->[androidx.core:core:1.13.1] C:\Users\marco\.gradle\caches\8.9\transforms\7eb50eda3edf4ddf50edc72949ebb615\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
-15-->[androidx.core:core:1.13.1] C:\Users\marco\.gradle\caches\8.9\transforms\7eb50eda3edf4ddf50edc72949ebb615\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+15-->[androidx.core:core:1.13.1] C:\Users\danie\.gradle\caches\8.9\transforms\0dd7b2eaeb78314a58ca2e66b30eeda4\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.13.1] C:\Users\danie\.gradle\caches\8.9\transforms\0dd7b2eaeb78314a58ca2e66b30eeda4\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
 16
 17    <application
-17-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:5:5-31:19
+17-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:5:5-41:19
 18        android:allowBackup="true"
-18-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:6:9-35
+18-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:6:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.13.1] C:\Users\marco\.gradle\caches\8.9\transforms\7eb50eda3edf4ddf50edc72949ebb615\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+19-->[androidx.core:core:1.13.1] C:\Users\danie\.gradle\caches\8.9\transforms\0dd7b2eaeb78314a58ca2e66b30eeda4\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 20        android:dataExtractionRules="@xml/data_extraction_rules"
-20-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:7:9-65
+20-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:7:9-65
 21        android:debuggable="true"
 22        android:extractNativeLibs="false"
 23        android:fullBackupContent="@xml/backup_rules"
-23-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:8:9-54
+23-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:8:9-54
 24        android:icon="@mipmap/ic_launcher"
-24-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:9:9-43
+24-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:9:9-43
 25        android:label="@string/app_name"
-25-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:10:9-41
+25-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:10:9-41
 26        android:roundIcon="@mipmap/ic_launcher_round"
-26-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:11:9-54
+26-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:11:9-54
 27        android:supportsRtl="true"
-27-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:12:9-35
+27-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:12:9-35
 28        android:testOnly="true"
 29        android:theme="@style/Theme.FlappyChef" >
-29-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:13:9-48
+29-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:13:9-48
 30        <activity
-30-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:15:9-19:55
-31            android:name="game.flappychef.InstructionsActivity"
-31-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:16:13-49
+30-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:15:9-18:55
+31            android:name="game.flappychef.GameOverActivity"
+31-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:15:19-51
 32            android:exported="false"
-32-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:17:13-37
-33            android:label="@string/title_activity_instructions"
-33-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:18:13-64
+32-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:16:13-37
+33            android:label="@string/title_activity_gameOver"
+33-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:17:13-60
 34            android:theme="@style/Theme.FlappyChef" />
-34-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:19:13-52
+34-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:18:13-52
 35        <activity
-35-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:20:9-30:20
-36            android:name="game.flappychef.MainActivity"
-36-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:21:13-41
-37            android:exported="true"
-37-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:22:13-36
-38            android:label="@string/app_name"
-38-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:23:13-45
-39            android:theme="@style/Theme.FlappyChef" >
-39-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:24:13-52
-40            <intent-filter>
-40-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:25:13-29:29
-41                <action android:name="android.intent.action.MAIN" />
-41-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:26:17-69
-41-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:26:25-66
-42
-43                <category android:name="android.intent.category.LAUNCHER" />
-43-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:28:17-77
-43-->C:\Users\marco\OneDrive\Escritorio\Estudio_Trabajos\Cuarto\Moviles\FlappyChef\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:28:27-74
-44            </intent-filter>
-45        </activity>
-46        <activity
-46-->[com.karumi:dexter:6.2.3] C:\Users\marco\.gradle\caches\8.9\transforms\14993529eb6de077a9916bebbd9a25f8\transformed\dexter-6.2.3\AndroidManifest.xml:27:9-29:72
-47            android:name="com.karumi.dexter.DexterActivity"
-47-->[com.karumi:dexter:6.2.3] C:\Users\marco\.gradle\caches\8.9\transforms\14993529eb6de077a9916bebbd9a25f8\transformed\dexter-6.2.3\AndroidManifest.xml:28:13-60
-48            android:theme="@style/Dexter.Internal.Theme.Transparent" />
-48-->[com.karumi:dexter:6.2.3] C:\Users\marco\.gradle\caches\8.9\transforms\14993529eb6de077a9916bebbd9a25f8\transformed\dexter-6.2.3\AndroidManifest.xml:29:13-69
-49        <activity
-49-->[androidx.compose.ui:ui-test-manifest:1.6.6] C:\Users\marco\.gradle\caches\8.9\transforms\7b2df06d1b5743445ad8cdae4fb64204\transformed\ui-test-manifest-1.6.6\AndroidManifest.xml:23:9-25:39
-50            android:name="androidx.activity.ComponentActivity"
-50-->[androidx.compose.ui:ui-test-manifest:1.6.6] C:\Users\marco\.gradle\caches\8.9\transforms\7b2df06d1b5743445ad8cdae4fb64204\transformed\ui-test-manifest-1.6.6\AndroidManifest.xml:24:13-63
-51            android:exported="true" />
-51-->[androidx.compose.ui:ui-test-manifest:1.6.6] C:\Users\marco\.gradle\caches\8.9\transforms\7b2df06d1b5743445ad8cdae4fb64204\transformed\ui-test-manifest-1.6.6\AndroidManifest.xml:25:13-36
-52        <activity
-52-->[androidx.compose.ui:ui-tooling-android:1.6.6] C:\Users\marco\.gradle\caches\8.9\transforms\00761cb6a5fc31bbd991521258943fc1\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
-53            android:name="androidx.compose.ui.tooling.PreviewActivity"
-53-->[androidx.compose.ui:ui-tooling-android:1.6.6] C:\Users\marco\.gradle\caches\8.9\transforms\00761cb6a5fc31bbd991521258943fc1\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
-54            android:exported="true" />
-54-->[androidx.compose.ui:ui-tooling-android:1.6.6] C:\Users\marco\.gradle\caches\8.9\transforms\00761cb6a5fc31bbd991521258943fc1\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
-55
-56        <provider
-56-->[androidx.emoji2:emoji2:1.3.0] C:\Users\marco\.gradle\caches\8.9\transforms\0532977d9ecc8b25aaf410bfd8e83e4a\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-57            android:name="androidx.startup.InitializationProvider"
-57-->[androidx.emoji2:emoji2:1.3.0] C:\Users\marco\.gradle\caches\8.9\transforms\0532977d9ecc8b25aaf410bfd8e83e4a\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-58            android:authorities="game.flappychef.androidx-startup"
-58-->[androidx.emoji2:emoji2:1.3.0] C:\Users\marco\.gradle\caches\8.9\transforms\0532977d9ecc8b25aaf410bfd8e83e4a\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-59            android:exported="false" >
-59-->[androidx.emoji2:emoji2:1.3.0] C:\Users\marco\.gradle\caches\8.9\transforms\0532977d9ecc8b25aaf410bfd8e83e4a\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-60            <meta-data
-60-->[androidx.emoji2:emoji2:1.3.0] C:\Users\marco\.gradle\caches\8.9\transforms\0532977d9ecc8b25aaf410bfd8e83e4a\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-61                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-61-->[androidx.emoji2:emoji2:1.3.0] C:\Users\marco\.gradle\caches\8.9\transforms\0532977d9ecc8b25aaf410bfd8e83e4a\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-62                android:value="androidx.startup" />
-62-->[androidx.emoji2:emoji2:1.3.0] C:\Users\marco\.gradle\caches\8.9\transforms\0532977d9ecc8b25aaf410bfd8e83e4a\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-63            <meta-data
-63-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\marco\.gradle\caches\8.9\transforms\279aba4f9158923d3dee28fcbb52dad0\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:29:13-31:52
-64                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-64-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\marco\.gradle\caches\8.9\transforms\279aba4f9158923d3dee28fcbb52dad0\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:30:17-78
-65                android:value="androidx.startup" />
-65-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\marco\.gradle\caches\8.9\transforms\279aba4f9158923d3dee28fcbb52dad0\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:31:17-49
-66            <meta-data
-66-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
-67                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-67-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
-68                android:value="androidx.startup" />
-68-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
-69        </provider>
-70
-71        <receiver
-71-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-72            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-72-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
-73            android:directBootAware="false"
-73-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
-74            android:enabled="true"
-74-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
-75            android:exported="true"
-75-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
-76            android:permission="android.permission.DUMP" >
-76-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
-77            <intent-filter>
-77-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
-78                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-78-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
-78-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
-79            </intent-filter>
-80            <intent-filter>
-80-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
-81                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
-81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
-82            </intent-filter>
-83            <intent-filter>
-83-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
-84                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-84-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
-84-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
-85            </intent-filter>
-86            <intent-filter>
-86-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
-87                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-87-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
-87-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\marco\.gradle\caches\8.9\transforms\d49c242980c68917ea69d6358f2c69db\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
-88            </intent-filter>
-89        </receiver>
-90    </application>
-91
-92</manifest>
+35-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:20:9-23:55
+36            android:name="game.flappychef.GameActivity"
+36-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:20:19-47
+37            android:exported="false"
+37-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:21:13-37
+38            android:label="@string/title_activity_game"
+38-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:22:13-56
+39            android:theme="@style/Theme.FlappyChef" />
+39-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:23:13-52
+40        <activity
+40-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:25:9-29:55
+41            android:name="game.flappychef.InstructionsActivity"
+41-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:26:13-49
+42            android:exported="false"
+42-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:27:13-37
+43            android:label="@string/title_activity_instructions"
+43-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:28:13-64
+44            android:theme="@style/Theme.FlappyChef" />
+44-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:29:13-52
+45        <activity
+45-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:30:9-40:20
+46            android:name="game.flappychef.MainActivity"
+46-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:31:13-41
+47            android:exported="true"
+47-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:32:13-36
+48            android:label="@string/app_name"
+48-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:33:13-45
+49            android:theme="@style/Theme.FlappyChef" >
+49-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:34:13-52
+50            <intent-filter>
+50-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:35:13-39:29
+51                <action android:name="android.intent.action.MAIN" />
+51-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:36:17-69
+51-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:36:25-66
+52
+53                <category android:name="android.intent.category.LAUNCHER" />
+53-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:38:17-77
+53-->D:\UNIVERSIDAD\4\1_Cuatri\Moviles\FlappyChefRepositorio\FlappyChef\FlappyChef\app\src\main\AndroidManifest.xml:38:27-74
+54            </intent-filter>
+55        </activity>
+56        <activity
+56-->[androidx.compose.ui:ui-tooling-android:1.6.6] C:\Users\danie\.gradle\caches\8.9\transforms\49cde8019da4852e5c2368e9507f2498\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
+57            android:name="androidx.compose.ui.tooling.PreviewActivity"
+57-->[androidx.compose.ui:ui-tooling-android:1.6.6] C:\Users\danie\.gradle\caches\8.9\transforms\49cde8019da4852e5c2368e9507f2498\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+58            android:exported="true" />
+58-->[androidx.compose.ui:ui-tooling-android:1.6.6] C:\Users\danie\.gradle\caches\8.9\transforms\49cde8019da4852e5c2368e9507f2498\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+59        <activity
+59-->[androidx.compose.ui:ui-test-manifest:1.6.6] C:\Users\danie\.gradle\caches\8.9\transforms\0b0d72fb8366c97b6a6cc41573b0e362\transformed\ui-test-manifest-1.6.6\AndroidManifest.xml:23:9-25:39
+60            android:name="androidx.activity.ComponentActivity"
+60-->[androidx.compose.ui:ui-test-manifest:1.6.6] C:\Users\danie\.gradle\caches\8.9\transforms\0b0d72fb8366c97b6a6cc41573b0e362\transformed\ui-test-manifest-1.6.6\AndroidManifest.xml:24:13-63
+61            android:exported="true" />
+61-->[androidx.compose.ui:ui-test-manifest:1.6.6] C:\Users\danie\.gradle\caches\8.9\transforms\0b0d72fb8366c97b6a6cc41573b0e362\transformed\ui-test-manifest-1.6.6\AndroidManifest.xml:25:13-36
+62        <activity
+62-->[com.karumi:dexter:6.2.3] C:\Users\danie\.gradle\caches\8.9\transforms\3e375ddeab74c3a7b04b4e67dd1cf57b\transformed\dexter-6.2.3\AndroidManifest.xml:27:9-29:72
+63            android:name="com.karumi.dexter.DexterActivity"
+63-->[com.karumi:dexter:6.2.3] C:\Users\danie\.gradle\caches\8.9\transforms\3e375ddeab74c3a7b04b4e67dd1cf57b\transformed\dexter-6.2.3\AndroidManifest.xml:28:13-60
+64            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+64-->[com.karumi:dexter:6.2.3] C:\Users\danie\.gradle\caches\8.9\transforms\3e375ddeab74c3a7b04b4e67dd1cf57b\transformed\dexter-6.2.3\AndroidManifest.xml:29:13-69
+65
+66        <provider
+66-->[androidx.emoji2:emoji2:1.3.0] C:\Users\danie\.gradle\caches\8.9\transforms\04c5470c8e9cc2e3b14d7b6cc79973a6\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+67            android:name="androidx.startup.InitializationProvider"
+67-->[androidx.emoji2:emoji2:1.3.0] C:\Users\danie\.gradle\caches\8.9\transforms\04c5470c8e9cc2e3b14d7b6cc79973a6\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+68            android:authorities="game.flappychef.androidx-startup"
+68-->[androidx.emoji2:emoji2:1.3.0] C:\Users\danie\.gradle\caches\8.9\transforms\04c5470c8e9cc2e3b14d7b6cc79973a6\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+69            android:exported="false" >
+69-->[androidx.emoji2:emoji2:1.3.0] C:\Users\danie\.gradle\caches\8.9\transforms\04c5470c8e9cc2e3b14d7b6cc79973a6\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+70            <meta-data
+70-->[androidx.emoji2:emoji2:1.3.0] C:\Users\danie\.gradle\caches\8.9\transforms\04c5470c8e9cc2e3b14d7b6cc79973a6\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+71                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+71-->[androidx.emoji2:emoji2:1.3.0] C:\Users\danie\.gradle\caches\8.9\transforms\04c5470c8e9cc2e3b14d7b6cc79973a6\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+72                android:value="androidx.startup" />
+72-->[androidx.emoji2:emoji2:1.3.0] C:\Users\danie\.gradle\caches\8.9\transforms\04c5470c8e9cc2e3b14d7b6cc79973a6\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+73            <meta-data
+73-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\danie\.gradle\caches\8.9\transforms\8d3f3bd7b231b16c4dc909147180e1be\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:29:13-31:52
+74                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+74-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\danie\.gradle\caches\8.9\transforms\8d3f3bd7b231b16c4dc909147180e1be\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:30:17-78
+75                android:value="androidx.startup" />
+75-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\danie\.gradle\caches\8.9\transforms\8d3f3bd7b231b16c4dc909147180e1be\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:31:17-49
+76            <meta-data
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+77                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+77-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+78                android:value="androidx.startup" />
+78-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+79        </provider>
+80
+81        <receiver
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+82            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+83            android:directBootAware="false"
+83-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+84            android:enabled="true"
+84-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+85            android:exported="true"
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+86            android:permission="android.permission.DUMP" >
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+87            <intent-filter>
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+88                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+88-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+88-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+89            </intent-filter>
+90            <intent-filter>
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+91                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+92            </intent-filter>
+93            <intent-filter>
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+94                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+95            </intent-filter>
+96            <intent-filter>
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+97                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\danie\.gradle\caches\8.9\transforms\9e0867a17796ca4d6d49e96f7450dd59\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+98            </intent-filter>
+99        </receiver>
+100    </application>
+101
+102</manifest>

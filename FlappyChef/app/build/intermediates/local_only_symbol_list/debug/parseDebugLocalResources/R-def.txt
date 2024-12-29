@@ -7,11 +7,15 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable fondo_dia
+drawable fondo_noche
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
+string title_activity_game
+string title_activity_gameOver
 string title_activity_instructions
 style Theme.FlappyChef
 xml backup_rules
