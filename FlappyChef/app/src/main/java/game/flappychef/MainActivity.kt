@@ -1,10 +1,13 @@
 package game.flappychef
 
 import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -20,11 +23,18 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.TextStyle
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Obtener la hora actual y determinar si es de día o de noche
+        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val isDayTime = currentHour in 8..17 // Es de día si la hora está entre las 8 AM y las 5 PM
+        Log.d("InstructionsActivity", "Current hour: $currentHour, Is it day time? $isDayTime")
+
         setContent {
-            GameTheme {
+            GameTheme(isDayTime = isDayTime) {
                 MainMenuScreen(
                     onPlayClick = {
                         val intent = Intent(this, GameActivity::class.java)
@@ -45,16 +55,35 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GameTheme(content: @Composable () -> Unit) {
-    MaterialTheme(
-        colorScheme = lightColorScheme(
+fun GameTheme(isDayTime: Boolean, content: @Composable () -> Unit) {
+    val colors = if (isDayTime) {
+        // Colores para el modo día
+        lightColorScheme(
             primary = Color(0xFFFF5722),  // Naranja brillante
             secondary = Color(0xFF4CAF50), // Verde
-            background = Color(0xFFF8E4A7), // Amarillo suave para el fondo
+            background = Color(0xFFABABAB), // Gris claro para el fondo de día
             surface = Color(0xFFFFFFFF),  // Blanco para los botones
-            onPrimary = Color.White, // Texto blanco sobre el fondo naranja
-            onSecondary = Color.White // Texto blanco sobre el verde
-        ),
+            onPrimary = Color.White, // Texto negro sobre el fondo naranja
+            onSecondary = Color.White, // Texto negro sobre el verde
+            onBackground = Color.White, // Texto negro sobre fondo claro
+            onSurface = Color.White // Texto negro sobre superficie blanca
+        )
+    } else {
+        // Colores para el modo noche
+        darkColorScheme(
+            primary = Color(0xFFBB86FC),  // Púrpura claro
+            secondary = Color(0xFF03DAC6), // Verde agua
+            background = Color(0xFF121212), // Gris oscuro para el fondo de noche
+            surface = Color(0xFF121212),  // Fondo oscuro
+            onPrimary = Color.White, // Texto blanco sobre el púrpura
+            onSecondary = Color.White, // Texto blanco sobre el verde agua
+            onBackground = Color.White, // Texto blanco sobre fondo oscuro
+            onSurface = Color.White // Texto blanco sobre superficie oscura
+        )
+    }
+
+    MaterialTheme(
+        colorScheme = colors,
         typography = Typography(),
         content = content
     )
@@ -69,11 +98,13 @@ fun MainMenuScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        // Título con estilo más divertido y colores llamativos
+        verticalArrangement = Arrangement.Center,
+
+        ) {
+        // Título con el color adecuado según el tema
         Text(
             text = "Flappy Chef",
             fontSize = 48.sp,
@@ -109,7 +140,7 @@ fun MainMenuScreen(
                 text = "Jugar",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = MaterialTheme.colorScheme.onPrimary // El texto se ajusta al tema
             )
         }
 
@@ -128,7 +159,7 @@ fun MainMenuScreen(
                 text = "Instrucciones",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = MaterialTheme.colorScheme.onSecondary // El texto se ajusta al tema
             )
         }
 
@@ -147,16 +178,18 @@ fun MainMenuScreen(
                 text = "Ajustes",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = MaterialTheme.colorScheme.onSecondary // El texto se ajusta al tema
             )
         }
     }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 fun MainMenuScreenPreview() {
-    GameTheme {
+    GameTheme(isDayTime = true) {
         MainMenuScreen(
             onPlayClick = {},
             onInstructionsClick = {},

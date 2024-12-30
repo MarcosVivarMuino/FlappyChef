@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.icu.util.Calendar
 import android.media.AudioManager
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,6 +18,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -38,8 +40,13 @@ import kotlin.math.roundToInt
 class SettingsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Obtener si es de día o noche
+        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val isDayTime = currentHour in 8..17 // Es de día si la hora está entre las 8 AM y las 5 PM
+
         setContent {
-            GameTheme {
+            GameTheme(isDayTime = isDayTime) {
                 SettingsScreen(onBackClick = { finish() })
             }
         }
@@ -75,13 +82,17 @@ fun SettingsScreen(onBackClick: () -> Unit) {
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+        ,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(
             text = "Ajustes",
             fontSize = 28.sp,
+            color = MaterialTheme.colorScheme.primary,
             style = MaterialTheme.typography.headlineMedium
         )
 
@@ -98,7 +109,7 @@ fun SettingsScreen(onBackClick: () -> Unit) {
             Text(text = "Cambiar Foto de Perfil")
         }
 
-        Text(text = "Brillo", modifier = Modifier.padding(8.dp))
+        Text(text = "Brillo", modifier = Modifier.padding(8.dp), color = MaterialTheme.colorScheme.onBackground)
         Slider(
             value = brightness,
             onValueChange = {
@@ -112,7 +123,7 @@ fun SettingsScreen(onBackClick: () -> Unit) {
             modifier = Modifier.padding(8.dp)
         )
 
-        Text(text = "Volumen", modifier = Modifier.padding(8.dp))
+        Text(text = "Volumen", modifier = Modifier.padding(8.dp), color = MaterialTheme.colorScheme.onBackground)
         Slider(
             value = volume,
             onValueChange = {
@@ -133,3 +144,12 @@ fun SettingsScreen(onBackClick: () -> Unit) {
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun SettingsScreenPreview() {
+    GameTheme(isDayTime = true) {
+        SettingsScreen(onBackClick = {})
+    }
+}
+
