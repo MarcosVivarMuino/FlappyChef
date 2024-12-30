@@ -7,10 +7,14 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable bola_fuego
 drawable fondo_dia
 drawable fondo_noche
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable olla
+drawable tenedor
+drawable torre_alta
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name

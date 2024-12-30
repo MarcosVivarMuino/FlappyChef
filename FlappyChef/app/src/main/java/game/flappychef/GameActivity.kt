@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
@@ -48,23 +49,19 @@ class GameActivity : ComponentActivity() {
 }
 @Composable
 fun GameScreen(onGameOver: () -> Unit) {
-    var playerY by remember { mutableStateOf(400f) }
+    var playerY by remember { mutableStateOf(500f) }
     var playerX by remember { mutableStateOf(300f) }
-    val playerWidth = 75f
-    val playerHeight = 75f
-
     var velocity by remember { mutableStateOf(0f) }
-    val gravity = 0.4f
-    val jumpForce = -9f
+
+    val gravity = 1f
+    val jumpForce = -15f
     val obstacles = remember { mutableStateListOf<Obstacle>() }
     val obstacleWidth = 100f
     val obstacleGap = 700f
-
-    val enemy = remember { Enemy(x = 950f, y = Random.nextInt(100, 600).toFloat()) } // Enemigo en el borde derecho
+    val enemy = remember { Enemy(x = 950f, y = Random.nextInt(100, 1820).toFloat()) } // Enemigo en el borde derecho
     val balls = remember { mutableStateListOf<Ball>() }
     var playerColor by remember { mutableStateOf(Color.Red) } // Color inicial del jugador (rojo)
     val horizontalEnemies = remember { mutableStateListOf<HorizontalEnemy>() } // Lista de enemigos horizontales
-
 
     val configuration = LocalConfiguration.current
     val screenHeightPx = with(LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
@@ -77,19 +74,6 @@ fun GameScreen(onGameOver: () -> Unit) {
     } else {
         R.drawable.fondo_noche // Fondo de noche
     }
-
-    // Recuperar la imagen guardada desde SharedPreferences
-    val context = LocalContext.current
-    val prefs = context.getSharedPreferences("game_prefs", Context.MODE_PRIVATE)
-    val profileImageUri = prefs.getString("profile_image", null)
-
-    // Convertir la ruta del archivo en un bitmap
-    val playerBitmap = remember(profileImageUri) {
-        profileImageUri?.let { uri ->
-            BitmapFactory.decodeFile(uri)
-        }
-    }
-
 
     // Generar bolas cada 20 segundos
     LaunchedEffect(Unit) {
@@ -127,7 +111,7 @@ fun GameScreen(onGameOver: () -> Unit) {
     // Generar enemigos horizontales cada 5 segundos
     LaunchedEffect(Unit) {
         while (true) {
-            delay(5000L) // Crear un enemigo cada 5 segundos
+            delay(1000L) // Crear un enemigo cada 5 segundos
             horizontalEnemies.add(
                 HorizontalEnemy(
                     x = screenWidthPx, // Inicia en el borde derecho de la pantalla
@@ -183,13 +167,13 @@ fun GameScreen(onGameOver: () -> Unit) {
             velocity += gravity
 
             // Terminar el juego si el jugador sale de los límites
-            if (playerY >= screenHeightPx - playerHeight || playerY <= 0f) {
+            if (playerY >= screenHeightPx - 50f || playerY <= 0f) {
                 onGameOver()
                 break
             }
 
             // Verificar colisiones con obstáculos
-            if (checkCollisions(playerY, obstacles, screenHeightPx, obstacleWidth, obstacleGap, playerWidth, playerHeight)) {
+            if (checkCollisions(playerY, obstacles, screenHeightPx, obstacleWidth, obstacleGap)) {
                 onGameOver()
                 break
             }
@@ -211,6 +195,8 @@ fun GameScreen(onGameOver: () -> Unit) {
             }
         }
     }
+
+
     // Detectar colisiones entre el jugador y los enemigos horizontales
     LaunchedEffect(horizontalEnemies) {
         while (true) {
@@ -240,26 +226,14 @@ fun GameScreen(onGameOver: () -> Unit) {
             contentScale = ContentScale.Crop
         )
 
-        // Jugador (imagen guardada o predeterminada si no hay imagen)
-        if (playerBitmap != null) {
-            Image(
-                bitmap = playerBitmap.asImageBitmap(),
-                contentDescription = "Jugador",
-                modifier = Modifier
-                    .size(playerWidth.dp, playerHeight.dp)
-                    .offset(x = 50.dp, y = playerY.dp)
+        // Jugador
+        Canvas(Modifier.fillMaxSize()) {
+            drawCircle(
+                color = playerColor,
+                radius = 50f,
+                center = Offset(300f, playerY)
             )
-        } else {
-            // Si no hay imagen guardada, mostrar un círculo rojo
-            Canvas(Modifier.fillMaxSize()) {
-                drawCircle(
-                    color = Color.Red,
-                    radius = 50f,
-                    center = Offset(50f, playerY)
-                )
-            }
         }
-
 
         // Enemigo
         Canvas(Modifier.fillMaxSize()) {
@@ -275,7 +249,7 @@ fun GameScreen(onGameOver: () -> Unit) {
             Canvas(Modifier.fillMaxSize()) {
                 drawCircle(
                     color = Color.Yellow,
-                    radius = 30f,
+                    radius = 80f,
                     center = Offset(ball.x, ball.y)
                 )
             }
@@ -295,7 +269,8 @@ fun GameScreen(onGameOver: () -> Unit) {
         // Obstáculos
         for (obstacle in obstacles) {
             val upperObstacleHeight = obstacle.gapPosition.toFloat()
-            val lowerObstacleHeight = screenHeightPx - (obstacle.gapPosition + obstacleGap).toFloat()
+            val lowerObstacleHeight =
+                screenHeightPx - (obstacle.gapPosition + obstacleGap).toFloat()
 
             Canvas(Modifier.fillMaxSize()) {
                 drawRect(
@@ -312,61 +287,50 @@ fun GameScreen(onGameOver: () -> Unit) {
         }
     }
 }
+
 // Función para detectar colisiones entre el jugador y los obstáculos
-fun checkCollisions(
-    playerY: Float,
-    obstacles: List<Obstacle>,
-    screenHeightPx: Float,
-    obstacleWidth: Float,
-    obstacleGap: Float,
-    playerWidth: Float,
-    playerHeight: Float
-): Boolean {
-    // Posición del jugador ajustada a 50f en el eje X (como en el dibujo)
-    val playerLeft = 50f
-    val playerRight = playerLeft + playerWidth
-    val playerTop = playerY
-    val playerBottom = playerY + playerHeight
+fun checkCollisions(playerY: Float, obstacles: List<Obstacle>, screenHeightPx: Float, obstacleWidth: Float, obstacleGap: Float): Boolean {
+    val playerLeft = 300f - 50f
+    val playerRight = 300f + 50f
+    val playerTop = playerY - 50f
+    val playerBottom = playerY + 50f
 
     for (obstacle in obstacles) {
-        // Dimensiones del obstáculo superior
+        val upperObstacleHeight = obstacle.gapPosition.toFloat()
+        val lowerObstacleHeight = screenHeightPx - (obstacle.gapPosition + obstacleGap).toFloat()
+
         val upperObstacleLeft = obstacle.x
         val upperObstacleRight = obstacle.x + obstacleWidth
         val upperObstacleTop = 0f
-        val upperObstacleBottom = obstacle.gapPosition.toFloat()
+        val upperObstacleBottom = upperObstacleHeight
 
-        // Dimensiones del obstáculo inferior
         val lowerObstacleLeft = obstacle.x
         val lowerObstacleRight = obstacle.x + obstacleWidth
         val lowerObstacleTop = obstacle.gapPosition + obstacleGap
         val lowerObstacleBottom = screenHeightPx
 
         // Verificar colisión con el obstáculo superior
-        val collidesWithUpperObstacle =
-            playerRight > upperObstacleLeft &&  // El jugador choca por la derecha
-                    playerLeft < upperObstacleRight && // El jugador choca por la izquierda
-                    playerBottom > upperObstacleTop && // El jugador está dentro del área vertical
-                    playerTop < upperObstacleBottom
+        val collidesWithUpperObstacle = playerRight > upperObstacleLeft &&
+                playerLeft < upperObstacleRight &&
+                playerBottom > upperObstacleTop &&
+                playerTop < upperObstacleBottom
 
         // Verificar colisión con el obstáculo inferior
-        val collidesWithLowerObstacle =
-            playerRight > lowerObstacleLeft &&
-                    playerLeft < lowerObstacleRight &&
-                    playerBottom > lowerObstacleTop &&
-                    playerTop < lowerObstacleBottom
+        val collidesWithLowerObstacle = playerRight > lowerObstacleLeft &&
+                playerLeft < lowerObstacleRight &&
+                playerBottom > lowerObstacleTop &&
+                playerTop < lowerObstacleBottom
 
-        // Si colisiona con cualquiera de los obstáculos, devuelve true
         if (collidesWithUpperObstacle || collidesWithLowerObstacle) {
             return true
         }
     }
+
     return false
 }
 
-
 // Función para verificar la colisión entre el jugador y la bola
-fun checkCollisionBall(playerX: Float, playerY: Float, playerWidth: Float, playerHeight: Float,
-                       ballX: Float, ballY: Float, ballRadius: Float): Boolean {
+fun checkCollisionBall(playerX: Float, playerY: Float, playerWidth: Float, playerHeight: Float, ballX: Float, ballY: Float, ballRadius: Float): Boolean {
     val playerLeft = playerX - playerWidth / 2
     val playerRight = playerX + playerWidth / 2
     val playerTop = playerY - playerHeight / 2
