@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
@@ -26,11 +27,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import kotlin.random.Random
+import androidx.compose.foundation.Canvas
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.drawscope.scale
+import androidx.compose.ui.res.imageResource
 
 class GameActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +46,7 @@ class GameActivity : ComponentActivity() {
         setContent {
             GameScreen(
                 onGameOver = {
-                    // Aquí no terminamos la actividad, simplemente mostramos la pantalla Game Over
+                    finish()
                     val intent = Intent(this, GameOverActivity::class.java)
                     startActivity(intent)
                 }
@@ -58,10 +65,11 @@ fun GameScreen(onGameOver: () -> Unit) {
     val obstacles = remember { mutableStateListOf<Obstacle>() }
     val obstacleWidth = 100f
     val obstacleGap = 700f
-    val enemy = remember { Enemy(x = 950f, y = Random.nextInt(100, 1820).toFloat()) } // Enemigo en el borde derecho
+    val enemy = remember { Enemy(x = 780f, y = Random.nextInt(100, 1820).toFloat()) } // Enemigo en el borde derecho
     val balls = remember { mutableStateListOf<Ball>() }
     var playerColor by remember { mutableStateOf(Color.Red) } // Color inicial del jugador (rojo)
     val horizontalEnemies = remember { mutableStateListOf<HorizontalEnemy>() } // Lista de enemigos horizontales
+    var isGameOver by remember { mutableStateOf(false) }
 
     val configuration = LocalConfiguration.current
     val screenHeightPx = with(LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
@@ -138,7 +146,7 @@ fun GameScreen(onGameOver: () -> Unit) {
     // Generar obstáculos periódicamente
     LaunchedEffect(Unit) {
         while (true) {
-            delay(8000L)
+            delay(4000L)
             obstacles.add(
                 Obstacle(
                     x = screenWidthPx.toInt(),
@@ -159,22 +167,28 @@ fun GameScreen(onGameOver: () -> Unit) {
         }
     }
 
-    // Movimiento del jugador y detección de colisiones
+    // Movimiento del jugador y detección de colisiones con obstáculos
     LaunchedEffect(Unit) {
-        while (true) {
+        while (!isGameOver) {
             delay(10L)
             playerY += velocity
             velocity += gravity
 
-            // Terminar el juego si el jugador sale de los límites
+            // Si el jugador sale de los límites, activa Game Over
             if (playerY >= screenHeightPx - 50f || playerY <= 0f) {
-                onGameOver()
+                if (!isGameOver) {
+                    isGameOver = true
+                    onGameOver()
+                }
                 break
             }
 
             // Verificar colisiones con obstáculos
             if (checkCollisions(playerY, obstacles, screenHeightPx, obstacleWidth, obstacleGap)) {
-                onGameOver()
+                if (!isGameOver) {
+                    isGameOver = true
+                    onGameOver()
+                }
                 break
             }
         }
@@ -185,7 +199,9 @@ fun GameScreen(onGameOver: () -> Unit) {
         while (true) {
             delay(10L) // Chequear cada 10ms
             balls.forEach { ball ->
-                if (checkCollisionBall(playerX, playerY, 50f, 50f, ball.x, ball.y, 10f)) {
+                if (checkCollisionBall(playerX, playerY,
+                        50f, 50f,
+                        ball.x, ball.y, 10f)) {
                     // Si hay colisión, cambiar el color del jugador a azul
                     playerColor = Color.Blue
                     // Volver al color original después de 5 segundos
@@ -197,14 +213,26 @@ fun GameScreen(onGameOver: () -> Unit) {
     }
 
 
-    // Detectar colisiones entre el jugador y los enemigos horizontales
+    // Detección de colisiones con enemigos horizontales
     LaunchedEffect(horizontalEnemies) {
-        while (true) {
-            delay(10L) // Chequear cada 10ms
-            horizontalEnemies.forEach { enemy ->
-                if (checkCollisionHorizontalEnemy(playerX, playerY, 50f, 50f, enemy.x, enemy.y, enemy.width, enemy.height)
+        while (!isGameOver) {
+            delay(10L)
+            for (enemy in horizontalEnemies) {
+                if (checkCollisionHorizontalEnemy(
+                        playerX,
+                        playerY,
+                        25f, 25f,
+                        enemy.x,
+                        enemy.y,
+                        enemy.width,
+                        enemy.height
+                    )
                 ) {
-                    onGameOver() // Terminar el juego si hay colisión
+                    if (!isGameOver) {
+                        isGameOver = true
+                        onGameOver()
+                    }
+                    return@LaunchedEffect
                 }
             }
         }
@@ -236,53 +264,52 @@ fun GameScreen(onGameOver: () -> Unit) {
         }
 
         // Enemigo
+        // Cargar la imagen desde los recursos
+        val ollaImage: ImageBitmap = ImageBitmap.imageResource(id = R.drawable.olla)
         Canvas(Modifier.fillMaxSize()) {
-            drawRect(
-                color = Color.Red,
+            drawImage(
+                image = ollaImage,
                 topLeft = Offset(enemy.x, enemy.y),
-                size = androidx.compose.ui.geometry.Size(100f, 100f) // El enemigo es un cuadrado de 50x50
             )
         }
 
+
+
         // Bolas lanzadas por el enemigo
+        val ballImage: ImageBitmap = ImageBitmap.imageResource(id = R.drawable.bola_fuego)
         balls.forEach { ball ->
             Canvas(Modifier.fillMaxSize()) {
-                drawCircle(
-                    color = Color.Yellow,
-                    radius = 80f,
-                    center = Offset(ball.x, ball.y)
+                drawImage(
+                    image = ballImage,
+                    topLeft = Offset(ball.x, ball.y),
                 )
             }
         }
 
         // Enemigos horizontales
+        val tenedorImage: ImageBitmap = ImageBitmap.imageResource(id = R.drawable.tenedor)
         horizontalEnemies.forEach { enemy ->
             Canvas(Modifier.fillMaxSize()) {
-                drawRect(
-                    color = Color.Magenta,
+                drawImage(
+                    image = tenedorImage,
                     topLeft = Offset(enemy.x, enemy.y),
-                    size = androidx.compose.ui.geometry.Size(enemy.width, enemy.height)
                 )
             }
         }
 
         // Obstáculos
         for (obstacle in obstacles) {
-            val upperObstacleHeight = obstacle.gapPosition.toFloat()
-            val lowerObstacleHeight =
-                screenHeightPx - (obstacle.gapPosition + obstacleGap).toFloat()
+            val torreAltaImage: ImageBitmap = ImageBitmap.imageResource(id = R.drawable.torre_alta)
 
             Canvas(Modifier.fillMaxSize()) {
-                drawRect(
-                    color = Color.Green,
-                    topLeft = Offset(obstacle.x.toFloat(), 0f),
-                    size = androidx.compose.ui.geometry.Size(obstacleWidth, upperObstacleHeight)
+                drawImage(
+                    image = torreAltaImage,
+                    topLeft = Offset(
+                        x = obstacle.x.toFloat(), // Posición horizontal del obstáculo
+                        y = 0f
+                    )
                 )
-                drawRect(
-                    color = Color.Green,
-                    topLeft = Offset(obstacle.x.toFloat(), obstacle.gapPosition + obstacleGap),
-                    size = androidx.compose.ui.geometry.Size(obstacleWidth, lowerObstacleHeight)
-                )
+
             }
         }
     }
@@ -290,24 +317,19 @@ fun GameScreen(onGameOver: () -> Unit) {
 
 // Función para detectar colisiones entre el jugador y los obstáculos
 fun checkCollisions(playerY: Float, obstacles: List<Obstacle>, screenHeightPx: Float, obstacleWidth: Float, obstacleGap: Float): Boolean {
+    // Posiciones del jugador
     val playerLeft = 300f - 50f
     val playerRight = 300f + 50f
     val playerTop = playerY - 50f
     val playerBottom = playerY + 50f
 
     for (obstacle in obstacles) {
-        val upperObstacleHeight = obstacle.gapPosition.toFloat()
-        val lowerObstacleHeight = screenHeightPx - (obstacle.gapPosition + obstacleGap).toFloat()
-
+        // Coordenadas del obstáculo superior
         val upperObstacleLeft = obstacle.x
         val upperObstacleRight = obstacle.x + obstacleWidth
         val upperObstacleTop = 0f
-        val upperObstacleBottom = upperObstacleHeight
+        val upperObstacleBottom = obstacle.gapPosition.toFloat()
 
-        val lowerObstacleLeft = obstacle.x
-        val lowerObstacleRight = obstacle.x + obstacleWidth
-        val lowerObstacleTop = obstacle.gapPosition + obstacleGap
-        val lowerObstacleBottom = screenHeightPx
 
         // Verificar colisión con el obstáculo superior
         val collidesWithUpperObstacle = playerRight > upperObstacleLeft &&
@@ -315,17 +337,12 @@ fun checkCollisions(playerY: Float, obstacles: List<Obstacle>, screenHeightPx: F
                 playerBottom > upperObstacleTop &&
                 playerTop < upperObstacleBottom
 
-        // Verificar colisión con el obstáculo inferior
-        val collidesWithLowerObstacle = playerRight > lowerObstacleLeft &&
-                playerLeft < lowerObstacleRight &&
-                playerBottom > lowerObstacleTop &&
-                playerTop < lowerObstacleBottom
 
-        if (collidesWithUpperObstacle || collidesWithLowerObstacle) {
+        // Si colisiona con cualquiera de los dos, retorna true
+        if (collidesWithUpperObstacle) {
             return true
         }
     }
-
     return false
 }
 

@@ -992,6 +992,8 @@ int drawable tenedor 0x7f070084
 int drawable tooltip_frame_dark 0x7f070080
 int drawable tooltip_frame_light 0x7f070081
 int drawable torre_alta 0x7f070085
+int drawable torre_baja 0x7f070086
+int drawable torre_media 0x7f070087
 int id ALT 0x7f080000
 int id CTRL 0x7f080001
 int id FUNCTION 0x7f080002

@@ -993,6 +993,8 @@ drawable tenedor
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable torre_alta
+drawable torre_baja
+drawable torre_media
 id ALT
 id CTRL
 id FUNCTION
