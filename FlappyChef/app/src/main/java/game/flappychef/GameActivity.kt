@@ -71,6 +71,9 @@ fun GameScreen(onGameOver: () -> Unit) {
     val horizontalEnemies = remember { mutableStateListOf<HorizontalEnemy>() } // Lista de enemigos horizontales
     var isGameOver by remember { mutableStateOf(false) }
 
+    var showBurnImage by remember { mutableStateOf(false) }  // Para controlar la visibilidad de la imagen
+    var burnStartTime by remember { mutableStateOf(0L) }       // Para guardar el tiempo de inicio del contador
+
     val configuration = LocalConfiguration.current
     val screenHeightPx = with(LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
     val screenWidthPx = with(LocalDensity.current) { configuration.screenWidthDp.dp.toPx() }
@@ -83,10 +86,10 @@ fun GameScreen(onGameOver: () -> Unit) {
         R.drawable.fondo_noche // Fondo de noche
     }
 
-    // Generar bolas cada 20 segundos
+    //Crear bolas
     LaunchedEffect(Unit) {
         while (true) {
-            delay(5000L) // Esperar 20 segundos
+            delay(5000L)
             balls.add(
                 Ball(
                     x = enemy.x,
@@ -119,7 +122,7 @@ fun GameScreen(onGameOver: () -> Unit) {
     // Generar enemigos horizontales cada 5 segundos
     LaunchedEffect(Unit) {
         while (true) {
-            delay(1000L) // Crear un enemigo cada 5 segundos
+            delay(2000L) // Crear un enemigo cada 5 segundos
             horizontalEnemies.add(
                 HorizontalEnemy(
                     x = screenWidthPx, // Inicia en el borde derecho de la pantalla
@@ -198,19 +201,22 @@ fun GameScreen(onGameOver: () -> Unit) {
     LaunchedEffect(balls) {
         while (true) {
             delay(10L) // Chequear cada 10ms
-            balls.forEach { ball ->
+            // Usamos un for convencional para poder usar break
+            for (ball in balls) {
                 if (checkCollisionBall(playerX, playerY,
                         50f, 50f,
                         ball.x, ball.y, 10f)) {
-                    // Si hay colisión, cambiar el color del jugador a azul
-                    playerColor = Color.Blue
-                    // Volver al color original después de 5 segundos
-                    delay(5000L)
-                    playerColor = Color.Red
+                    // Si hay colisión, mostrar la imagen de "te_quemas" y empezar el temporizador
+                    showBurnImage = true
+                    burnStartTime = System.currentTimeMillis()  // Guardar el momento de la colisión
+
+                    // Detener el ciclo y continuar con la lógica
+                    break  // Salir del ciclo una vez que detectamos la colisión
                 }
             }
         }
     }
+
 
 
     // Detección de colisiones con enemigos horizontales
@@ -238,14 +244,19 @@ fun GameScreen(onGameOver: () -> Unit) {
         }
     }
 
-    // Dibujo de la pantalla del juego
-    Box(
-        Modifier
-            .fillMaxSize()
-            .pointerInput(Unit) {
-                detectTapGestures { velocity = jumpForce }
+
+
+    // Detectar la acción de "Soplar" (simulada con un toque en la pantalla)
+    Box(Modifier.fillMaxSize().pointerInput(Unit) {
+        detectTapGestures {
+            velocity = jumpForce
+
+            if (showBurnImage) {
+                showBurnImage = false
             }
-    ) {
+        }
+    }) {
+
         // Fondo
         Image(
             painter = painterResource(id = backgroundRes),
@@ -253,6 +264,7 @@ fun GameScreen(onGameOver: () -> Unit) {
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
+
 
         // Jugador
         Canvas(Modifier.fillMaxSize()) {
@@ -272,8 +284,6 @@ fun GameScreen(onGameOver: () -> Unit) {
                 topLeft = Offset(enemy.x, enemy.y),
             )
         }
-
-
 
         // Bolas lanzadas por el enemigo
         val ballImage: ImageBitmap = ImageBitmap.imageResource(id = R.drawable.bola_fuego)
@@ -311,6 +321,31 @@ fun GameScreen(onGameOver: () -> Unit) {
                 )
 
             }
+        }
+    }
+
+    val teQuemasImage: ImageBitmap = ImageBitmap.imageResource(id = R.drawable.te_quemas)
+
+    // Dibujar la imagen cuando el jugador se ha quemado
+    if (showBurnImage) {
+        Canvas(Modifier.fillMaxSize()) {
+            // Centrar la imagen en la pantalla
+            val imageWidth = teQuemasImage.width.toFloat()
+            val imageHeight = teQuemasImage.height.toFloat()
+            val offsetX = screenWidthPx - imageWidth
+            val offsetY = screenHeightPx - imageHeight
+
+            // Dibujar la imagen en el centro de la pantalla
+            drawImage(
+                image = teQuemasImage,
+                topLeft = Offset(x = offsetX, y = offsetY)
+            )
+        }
+
+        // Verificar si han pasado 5 segundos
+        val elapsedTime = System.currentTimeMillis() - burnStartTime
+        if (elapsedTime > 5000L) {
+            onGameOver()
         }
     }
 }

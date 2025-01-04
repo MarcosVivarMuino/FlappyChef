@@ -13,6 +13,7 @@ drawable fondo_noche
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable olla
+drawable te_quemas
 drawable tenedor
 drawable torre_alta
 drawable torre_baja
