@@ -38,6 +38,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.res.imageResource
+import kotlinx.coroutines.launch
 
 class GameActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +75,10 @@ fun GameScreen(onGameOver: () -> Unit) {
     var showBurnImage by remember { mutableStateOf(false) }  // Para controlar la visibilidad de la imagen
     var burnStartTime by remember { mutableStateOf(0L) }       // Para guardar el tiempo de inicio del contador
 
+    val powerUps = remember { mutableStateListOf<PowerUp>() }
+    var isImmune by remember { mutableStateOf(false) }
+    var isSlowEnemies by remember { mutableStateOf(false) }
+
     val configuration = LocalConfiguration.current
     val screenHeightPx = with(LocalDensity.current) { configuration.screenHeightDp.dp.toPx() }
     val screenWidthPx = with(LocalDensity.current) { configuration.screenWidthDp.dp.toPx() }
@@ -99,6 +104,8 @@ fun GameScreen(onGameOver: () -> Unit) {
         }
     }
 
+
+
     // Mover las bolas de derecha a izquierda
     LaunchedEffect(balls) {
         while (true) {
@@ -108,6 +115,18 @@ fun GameScreen(onGameOver: () -> Unit) {
             }
             // Eliminar bolas que ya se salieron de la pantalla
             balls.removeAll { it.x < 0 }
+        }
+    }
+
+    // Mover los power-ups de derecha a izquierda
+    LaunchedEffect(powerUps) {
+        while (true) {
+            delay(10L) // Esperar 10ms antes de mover los power-ups
+            powerUps.forEach { powerUp ->
+                powerUp.x -= 3 // Mover power-up hacia la izquierda
+            }
+            // Eliminar power-ups que ya se salieron de la pantalla
+            powerUps.removeAll { it.x < 0 }
         }
     }
 
@@ -145,7 +164,7 @@ fun GameScreen(onGameOver: () -> Unit) {
     }
 
 
-
+/*
     // Generar obstáculos periódicamente
     LaunchedEffect(Unit) {
         while (true) {
@@ -169,7 +188,7 @@ fun GameScreen(onGameOver: () -> Unit) {
             obstacles.removeAll { it.x < -obstacleWidth }
         }
     }
-
+*/
     // Movimiento del jugador y detección de colisiones con obstáculos
     LaunchedEffect(Unit) {
         while (!isGameOver) {
@@ -186,6 +205,7 @@ fun GameScreen(onGameOver: () -> Unit) {
                 break
             }
 
+            /*
             // Verificar colisiones con obstáculos
             if (checkCollisions(playerY, obstacles, screenHeightPx, obstacleWidth, obstacleGap)) {
                 if (!isGameOver) {
@@ -194,6 +214,8 @@ fun GameScreen(onGameOver: () -> Unit) {
                 }
                 break
             }
+
+             */
         }
     }
 
@@ -244,6 +266,72 @@ fun GameScreen(onGameOver: () -> Unit) {
         }
     }
 
+    // Generar power-ups cada segundo
+    LaunchedEffect(Unit) {
+        while (!isGameOver) {
+            delay(1000L)  // Crear un power-up cada segundo
+
+            // Crear un nuevo power-up de tipo aleatorio
+            val randomX = Random.nextInt(100, screenWidthPx.toInt() - 100).toFloat()
+            val randomY = Random.nextInt(100, screenHeightPx.toInt() - 100).toFloat()
+            val powerUpType = if (Random.nextBoolean()) PowerUpType.IMMUNITY else PowerUpType.SLOW_ENEMIES
+
+            // Agregar el power-up a la lista
+            powerUps.add(PowerUp(x = randomX, y = randomY, type = powerUpType))
+
+
+        }
+    }
+
+    // Detectar colisiones entre el jugador y los power-ups
+    LaunchedEffect(powerUps) {
+        while (!isGameOver) {
+            delay(10L) // Chequear cada 10ms
+            for (powerUp in powerUps) {
+                if (checkCollisionPU(playerX, playerY, 50f, 50f, powerUp.x, powerUp.y, 20f)) {
+                    // Activar el efecto del power-up según el tipo
+                    when (powerUp.type) {
+                        PowerUpType.IMMUNITY -> {
+                            if (!isImmune) {
+                                isImmune = true
+                                // Desactivar la inmunidad después de 10 segundos
+                                launch {
+                                    delay(10000L)  // Duración de la inmunidad
+                                    isImmune = false
+                                }
+                            }
+                        }
+                        PowerUpType.SLOW_ENEMIES -> {
+                            if (!isSlowEnemies) {
+                                isSlowEnemies = true
+                                // Desactivar la ralentización después de 10 segundos
+                                launch {
+                                    delay(10000L)  // Duración de la ralentización
+                                    isSlowEnemies = false
+                                }
+                            }
+                        }
+                    }
+                    // Eliminar el power-up recogido
+                    powerUps.remove(powerUp)
+                    break // Si un power-up es recogido, salimos del bucle
+                }
+            }
+        }
+    }
+
+// Actualizar posición de los enemigos horizontales con ralentización de power-ups
+    LaunchedEffect(Unit) {
+        while (!isGameOver) {
+            delay(10L) // Mover enemigos cada 10ms
+            val speed = if (isSlowEnemies) 1 else 15 // Si está ralentizado, mueve más lento
+            for (enemy in horizontalEnemies) {
+                enemy.x -= speed // Velocidad de movimiento en -X
+            }
+            // Eliminar enemigos que salgan de la pantalla
+            horizontalEnemies.removeAll { it.x < -150f }
+        }
+    }
 
 
     // Detectar la acción de "Soplar" (simulada con un toque en la pantalla)
@@ -306,7 +394,7 @@ fun GameScreen(onGameOver: () -> Unit) {
                 )
             }
         }
-
+/*
         // Obstáculos
         for (obstacle in obstacles) {
             val torreAltaImage: ImageBitmap = ImageBitmap.imageResource(id = R.drawable.torre_alta)
@@ -321,7 +409,23 @@ fun GameScreen(onGameOver: () -> Unit) {
                 )
 
             }
+        }*/
+
+        // Dibujar los power-ups en la pantalla
+        powerUps.forEach { powerUp ->
+            Canvas(Modifier.fillMaxSize()) {
+                val color = when (powerUp.type) {
+                    PowerUpType.IMMUNITY -> Color.Cyan  // Inmunidad
+                    PowerUpType.SLOW_ENEMIES -> Color.Magenta  // Ralentización
+                }
+                drawCircle(
+                    color = color,
+                    radius = 20f,
+                    center = Offset(powerUp.x, powerUp.y)
+                )
+            }
         }
+
     }
 
     val teQuemasImage: ImageBitmap = ImageBitmap.imageResource(id = R.drawable.te_quemas)
@@ -350,7 +454,7 @@ fun GameScreen(onGameOver: () -> Unit) {
     }
 }
 
-// Función para detectar colisiones entre el jugador y los obstáculos
+/*// Función para detectar colisiones entre el jugador y los obstáculos
 fun checkCollisions(playerY: Float, obstacles: List<Obstacle>, screenHeightPx: Float, obstacleWidth: Float, obstacleGap: Float): Boolean {
     // Posiciones del jugador
     val playerLeft = 300f - 50f
@@ -365,7 +469,6 @@ fun checkCollisions(playerY: Float, obstacles: List<Obstacle>, screenHeightPx: F
         val upperObstacleTop = 0f
         val upperObstacleBottom = obstacle.gapPosition.toFloat()
 
-
         // Verificar colisión con el obstáculo superior
         val collidesWithUpperObstacle = playerRight > upperObstacleLeft &&
                 playerLeft < upperObstacleRight &&
@@ -379,7 +482,7 @@ fun checkCollisions(playerY: Float, obstacles: List<Obstacle>, screenHeightPx: F
         }
     }
     return false
-}
+}*/
 
 // Función para verificar la colisión entre el jugador y la bola
 fun checkCollisionBall(playerX: Float, playerY: Float, playerWidth: Float, playerHeight: Float, ballX: Float, ballY: Float, ballRadius: Float): Boolean {
@@ -416,6 +519,22 @@ fun checkCollisionHorizontalEnemy(
     return !(playerRight < enemyLeft || playerLeft > enemyRight || playerBottom < enemyTop || playerTop > enemyBottom)
 }
 
+// Función para verificar la colisión entre el jugador y un power-up
+fun checkCollisionPU(playerX: Float, playerY: Float, playerWidth: Float, playerHeight: Float, powerUpX: Float, powerUpY: Float, powerUpRadius: Float): Boolean {
+    val playerLeft = playerX - playerWidth / 2
+    val playerRight = playerX + playerWidth / 2
+    val playerTop = playerY - playerHeight / 2
+    val playerBottom = playerY + playerHeight / 2
+
+    val powerUpLeft = powerUpX - powerUpRadius
+    val powerUpRight = powerUpX + powerUpRadius
+    val powerUpTop = powerUpY - powerUpRadius
+    val powerUpBottom = powerUpY + powerUpRadius
+
+    // Verificar si hay colisión entre el jugador y el power-up
+    return !(playerRight < powerUpLeft || playerLeft > powerUpRight || playerBottom < powerUpTop || playerTop > powerUpBottom)
+}
+
 data class Enemy(
     var x: Float,  // Posición X fija del enemigo (siempre en el borde derecho)
     var y: Float   // Posición Y que varía con el tiempo
@@ -439,3 +558,14 @@ data class Obstacle(
     var x: Int,
     val gapPosition: Int
 )
+
+data class PowerUp(
+    var x: Float, // Posición X
+    var y: Float, // Posición Y
+    val type: PowerUpType // Tipo de power-up
+)
+
+enum class PowerUpType {
+    IMMUNITY,  // Inmunidad
+    SLOW_ENEMIES // Ralentizar enemigos
+}
