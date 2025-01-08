@@ -18,6 +18,7 @@ drawable tenedor
 drawable torre_alta
 drawable torre_baja
 drawable torre_media
+mipmap ic_icon
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
