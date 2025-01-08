@@ -10,6 +10,7 @@
 
     <!-- PERMISOS DE SOPLAR MICRO -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <permission
         android:name="game.flappychef.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"

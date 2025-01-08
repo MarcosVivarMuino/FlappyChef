@@ -1,11 +1,12 @@
 package game.flappychef
 
 import android.content.Intent
-import android.icu.util.Calendar
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -15,26 +16,47 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.TextStyle
+import androidx.core.content.ContextCompat
+import androidx.core.app.ActivityCompat
+import game.flappychef.R
 
 
 class MainActivity : ComponentActivity() {
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            Log.d("MainActivity", "Permiso para grabar audio concedido.")
+        } else {
+            Log.d("MainActivity", "Permiso para grabar audio denegado.")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Obtener la hora actual y determinar si es de día o de noche
-        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        val isDayTime = currentHour in 8..17 // Es de día si la hora está entre las 8 AM y las 5 PM
-        Log.d("InstructionsActivity", "Current hour: $currentHour, Is it day time? $isDayTime")
+        // Verificar si tenemos permisos para grabar
+        if (ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.RECORD_AUDIO
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            // Permiso ya concedido
+            Log.d("MainActivity", "Permiso para grabar audio ya concedido.")
+        } else {
+            // Si no tenemos el permiso, lo solicitamos
+            requestPermissionLauncher.launch(android.Manifest.permission.RECORD_AUDIO)
+        }
 
         setContent {
-            GameTheme(isDayTime = isDayTime) {
+            GameTheme(isDayTime = true) {
                 MainMenuScreen(
                     onPlayClick = {
                         val intent = Intent(this, GameActivity::class.java)
@@ -63,10 +85,10 @@ fun GameTheme(isDayTime: Boolean, content: @Composable () -> Unit) {
             secondary = Color(0xFF4CAF50), // Verde
             background = Color(0xFFABABAB), // Gris claro para el fondo de día
             surface = Color(0xFFFFFFFF),  // Blanco para los botones
-            onPrimary = Color.White, // Texto negro sobre el fondo naranja
-            onSecondary = Color.White, // Texto negro sobre el verde
-            onBackground = Color.White, // Texto negro sobre fondo claro
-            onSurface = Color.White // Texto negro sobre superficie blanca
+            onPrimary = Color.White, // Texto blanco sobre el fondo naranja
+            onSecondary = Color.White, // Texto blanco sobre el verde
+            onBackground = Color.White, // Texto blanco sobre fondo claro
+            onSurface = Color.White // Texto blanco sobre superficie blanca
         )
     } else {
         // Colores para el modo noche
@@ -98,18 +120,17 @@ fun MainMenuScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.background) // Fondo que se adapta al tema
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-
-        ) {
+        verticalArrangement = Arrangement.Center
+    ) {
         // Título con el color adecuado según el tema
         Text(
             text = "Flappy Chef",
             fontSize = 48.sp,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.primary, // Color del título adaptado al tema
             style = TextStyle(letterSpacing = 3.sp)
         )
 
@@ -133,7 +154,7 @@ fun MainMenuScreen(
                 .fillMaxWidth()
                 .height(56.dp)
                 .padding(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary), // Color de fondo del botón según el tema
             shape = RoundedCornerShape(12.dp)
         ) {
             Text(
@@ -152,7 +173,7 @@ fun MainMenuScreen(
                 .fillMaxWidth()
                 .height(56.dp)
                 .padding(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary), // Color de fondo del botón según el tema
             shape = RoundedCornerShape(12.dp)
         ) {
             Text(
@@ -171,7 +192,7 @@ fun MainMenuScreen(
                 .fillMaxWidth()
                 .height(56.dp)
                 .padding(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary), // Color de fondo del botón según el tema
             shape = RoundedCornerShape(12.dp)
         ) {
             Text(
@@ -184,8 +205,6 @@ fun MainMenuScreen(
     }
 }
 
-
-
 @Preview(showBackground = true)
 @Composable
 fun MainMenuScreenPreview() {
@@ -197,5 +216,3 @@ fun MainMenuScreenPreview() {
         )
     }
 }
-
-
