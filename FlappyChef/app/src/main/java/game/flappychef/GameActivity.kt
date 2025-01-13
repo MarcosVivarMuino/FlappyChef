@@ -72,7 +72,6 @@ class GameActivity : ComponentActivity(), SensorEventListener {
         setContent {
             GameScreen(
                 onGameOver = {
-                    finishAffinity()
                     finish()
                     val intent = Intent(this, GameOverActivity::class.java)
                     startActivity(intent)
@@ -84,8 +83,6 @@ class GameActivity : ComponentActivity(), SensorEventListener {
             )
         }
     }
-
-
 
 
     @Composable
@@ -307,9 +304,11 @@ class GameActivity : ComponentActivity(), SensorEventListener {
                 delay(10L) // Chequear colisiones cada 10ms
 
                 if (checkCollisions(playerX, playerY, 50f, 50f, towers, isImmune, soundManager)) {
+                    releaseResources(backgroundMusic, soundManager)
+
+
                     if (!isGameOver) {
                         isGameOver = true
-                        releaseResources(backgroundMusic, soundManager, isRecording, audioRecord)
                         onGameOver()
                     }
                     break
@@ -349,9 +348,9 @@ class GameActivity : ComponentActivity(), SensorEventListener {
 
                 // Si el jugador sale de los límites, activa Game Over
                 if (playerY >= screenHeightPx - 50f || playerY <= 0f) {
+                    releaseResources(backgroundMusic, soundManager)
                     if (!isGameOver) {
                         isGameOver = true
-                        releaseResources(backgroundMusic, soundManager, isRecording, audioRecord)
                         onGameOver()
 
                     }
@@ -403,10 +402,8 @@ class GameActivity : ComponentActivity(), SensorEventListener {
                     ) {
                         if (!isGameOver) {
                             isGameOver = true
-                            releaseResources(backgroundMusic, soundManager, isRecording, audioRecord)
+                            releaseResources(backgroundMusic, soundManager)
                             onGameOver()
-
-
                         }
                         return@LaunchedEffect
                     }
@@ -583,7 +580,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
             // Verificar si han pasado 5 segundos
             val elapsedTime = System.currentTimeMillis() - burnStartTime
             if (elapsedTime > 5000L) {
-                releaseResources(backgroundMusic, soundManager, isRecording, audioRecord)
+                releaseResources(backgroundMusic, soundManager)
                 onGameOver() // Terminar el juego después de 5 segundos
 
             }
@@ -596,9 +593,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
 
     fun releaseResources(
         backgroundMusic: BackgroundMusic,
-        soundManager: SoundManager,
-        isRecording: Boolean,
-        audioRecord: AudioRecord
+        soundManager: SoundManager
     ){
         // Detener y liberar música de fondo
         backgroundMusic.stop()
@@ -607,15 +602,6 @@ class GameActivity : ComponentActivity(), SensorEventListener {
         // Detener y liberar SoundManager
         soundManager.stopAll()
         soundManager.release()
-
-        // Detener AudioRecord
-        if (isRecording) {
-            audioRecord.stop()
-            audioRecord.release()
-        }
-        // Detener sensores
-        sensorManager.unregisterListener(this)
-
         // Otras tareas de limpieza, si aplica
     }
 
