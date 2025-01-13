@@ -72,6 +72,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
         setContent {
             GameScreen(
                 onGameOver = {
+                    finishAffinity()
                     finish()
                     val intent = Intent(this, GameOverActivity::class.java)
                     startActivity(intent)
@@ -84,17 +85,36 @@ class GameActivity : ComponentActivity(), SensorEventListener {
         }
     }
 
+
+
+
     @Composable
     fun GameScreen(onGameOver: () -> Unit, onShakeDetected: () -> Unit) {
+        // Obtén el contexto usando LocalContext
+        val context = LocalContext.current
+        // Usa `remember` para crear y almacenar una instancia de SoundManager
+        val soundManager = remember { SoundManager(context) }
+
+        val backgroundMusic = remember { BackgroundMusic(context) }
+
+        // Inicia la música de fondo cuando el personaje esté en fuego
+        LaunchedEffect(Unit) {
+            backgroundMusic.start()
+        }
+
+        DisposableEffect(Unit) {
+            onDispose {
+                backgroundMusic.stop()
+                backgroundMusic.release()
+            }
+        }
+
         var playerY by remember { mutableStateOf(500f) }
         var playerX by remember { mutableStateOf(300f) }
         var velocity by remember { mutableStateOf(0f) }
 
         val gravity = 1f
         val jumpForce = -15f
-        val obstacles = remember { mutableStateListOf<Obstacle>() }
-        val obstacleWidth = 100f
-        val obstacleGap = 700f
         val enemy = remember {
             Enemy(
                 x = 780f,
@@ -133,8 +153,6 @@ class GameActivity : ComponentActivity(), SensorEventListener {
         var isBurning by remember { mutableStateOf(false) }
 
 
-        // Contexto
-        val context = LocalContext.current // Obtener el contexto composable
 
         // Configuración del micrófono
         val audioRecord = remember {
@@ -178,6 +196,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
         //Crear bolas
         LaunchedEffect(Unit) {
             while (true) {
+                soundManager.playBallSound()
                 delay(5000L)
                 balls.add(
                     Ball(
@@ -185,6 +204,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
                         y = enemy.y
                     )
                 )
+
             }
         }
 
@@ -259,6 +279,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
         // Generar enemigos horizontales cada 5 segundos
         LaunchedEffect(Unit) {
             while (true) {
+                soundManager.playForkSound()
                 delay(3000L) // Crear un enemigo cada 5 segundos
                 horizontalEnemies.add(
                     HorizontalEnemy(
@@ -285,9 +306,10 @@ class GameActivity : ComponentActivity(), SensorEventListener {
             while (!isGameOver) {
                 delay(10L) // Chequear colisiones cada 10ms
 
-                if (checkCollisions(playerX, playerY, 50f, 50f, towers, isImmune)) {
+                if (checkCollisions(playerX, playerY, 50f, 50f, towers, isImmune, soundManager)) {
                     if (!isGameOver) {
                         isGameOver = true
+                        releaseResources(backgroundMusic, soundManager, isRecording, audioRecord)
                         onGameOver()
                     }
                     break
@@ -329,7 +351,9 @@ class GameActivity : ComponentActivity(), SensorEventListener {
                 if (playerY >= screenHeightPx - 50f || playerY <= 0f) {
                     if (!isGameOver) {
                         isGameOver = true
+                        releaseResources(backgroundMusic, soundManager, isRecording, audioRecord)
                         onGameOver()
+
                     }
                     break
                 }
@@ -379,7 +403,10 @@ class GameActivity : ComponentActivity(), SensorEventListener {
                     ) {
                         if (!isGameOver) {
                             isGameOver = true
+                            releaseResources(backgroundMusic, soundManager, isRecording, audioRecord)
                             onGameOver()
+
+
                         }
                         return@LaunchedEffect
                     }
@@ -413,6 +440,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
                         // Activar el efecto del power-up según el tipo
                         when (powerUp.type) {
                             PowerUpType.IMMUNITY -> {
+                                soundManager.playPowerUp2Sound()
                                 if (!isImmune) {
                                     isImmune = true
                                     // Desactivar la inmunidad después de 10 segundos
@@ -424,6 +452,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
                             }
 
                             PowerUpType.SLOW_ENEMIES -> {
+                                soundManager.playPowerUp1Sound()
                                 if (!isSlowEnemies) {
                                     isSlowEnemies = true
                                     // Desactivar la ralentización después de 10 segundos
@@ -554,12 +583,41 @@ class GameActivity : ComponentActivity(), SensorEventListener {
             // Verificar si han pasado 5 segundos
             val elapsedTime = System.currentTimeMillis() - burnStartTime
             if (elapsedTime > 5000L) {
+                releaseResources(backgroundMusic, soundManager, isRecording, audioRecord)
                 onGameOver() // Terminar el juego después de 5 segundos
+
             }
         }
 
+
+
+
     }
 
+    fun releaseResources(
+        backgroundMusic: BackgroundMusic,
+        soundManager: SoundManager,
+        isRecording: Boolean,
+        audioRecord: AudioRecord
+    ){
+        // Detener y liberar música de fondo
+        backgroundMusic.stop()
+        backgroundMusic.release()
+
+        // Detener y liberar SoundManager
+        soundManager.stopAll()
+        soundManager.release()
+
+        // Detener AudioRecord
+        if (isRecording) {
+            audioRecord.stop()
+            audioRecord.release()
+        }
+        // Detener sensores
+        sensorManager.unregisterListener(this)
+
+        // Otras tareas de limpieza, si aplica
+    }
 
     // Función para detectar colisiones entre el jugador y los obstáculos
     fun checkCollisions(
@@ -568,7 +626,8 @@ class GameActivity : ComponentActivity(), SensorEventListener {
         playerWidth: Float,
         playerHeight: Float,
         towers: List<Pair<ImageBitmap, Offset>>,
-        isImmune: Boolean
+        isImmune: Boolean,
+        soundManager: SoundManager
     ): Boolean {
         if (isImmune) return false // Si el jugador es inmune, no hay colisión
 
@@ -585,6 +644,7 @@ class GameActivity : ComponentActivity(), SensorEventListener {
 
             // Verificar si las áreas del jugador y la torre se solapan
             if (!(playerRight < towerLeft || playerLeft > towerRight || playerBottom < towerTop || playerTop > towerBottom)) {
+                soundManager.playTowerSound()
                 return true // Colisión detectada
             }
         }
@@ -734,4 +794,6 @@ class GameActivity : ComponentActivity(), SensorEventListener {
     private fun activatePowerUps() {
         // Maneja la lógica de activación de power-ups aquí si es necesario
     }
+
+
 }

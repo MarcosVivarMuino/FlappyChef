@@ -54,6 +54,7 @@ dependencies {
     // Sensores y micrófono
     implementation(libs.accompanist.permissions)
     implementation(libs.audio.record)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

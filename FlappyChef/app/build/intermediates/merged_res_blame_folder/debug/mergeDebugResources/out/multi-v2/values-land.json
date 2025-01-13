@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "game.flappychef.app-mergeDebugResources-51:/values-land/values-land.xml",
+            "outputFile": "game.flappychef.app-mergeDebugResources-59:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\danie\\.gradle\\caches\\8.9\\transforms\\845ae2d5e965ba10b79e6a879acfb5c3\\transformed\\material-1.0.0\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\danie\\.gradle\\caches\\8.9\\transforms\\52076f2956cccb042c1dd3aee130758e\\transformed\\material-1.0.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\danie\\.gradle\\caches\\8.9\\transforms\\195b37cefafa6fb9e7d442f779acce13\\transformed\\appcompat-1.0.2\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\danie\\.gradle\\caches\\8.9\\transforms\\dccb870ccc4846d1ad890c011c6208b3\\transformed\\appcompat-1.0.2\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

@@ -21,6 +21,15 @@ drawable torre_media
 mipmap ic_icon
 mipmap ic_launcher
 mipmap ic_launcher_round
+raw boing
+raw dano
+raw invencible
+raw me_quemo
+raw musica_fondo
+raw olla_fuego
+raw sonido_powerup
+raw tenedor
+raw torre_platos
 string app_name
 string title_activity_game
 string title_activity_gameOver

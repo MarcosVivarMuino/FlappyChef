@@ -81,26 +81,26 @@ fun GameTheme(isDayTime: Boolean, content: @Composable () -> Unit) {
     val colors = if (isDayTime) {
         // Colores para el modo día
         lightColorScheme(
-            primary = Color(0xFFFF5722),  // Naranja brillante
-            secondary = Color(0xFF4CAF50), // Verde
-            background = Color(0xFFABABAB), // Gris claro para el fondo de día
-            surface = Color(0xFFFFFFFF),  // Blanco para los botones
-            onPrimary = Color.White, // Texto blanco sobre el fondo naranja
-            onSecondary = Color.White, // Texto blanco sobre el verde
-            onBackground = Color.White, // Texto blanco sobre fondo claro
-            onSurface = Color.White // Texto blanco sobre superficie blanca
+            primary = Color(0xFF2196F3),  // Azul cielo
+            secondary = Color(0xFFFFC107), // Amarillo cálido
+            background = Color(0xFFE3F2FD), // Azul muy claro
+            surface = Color(0xFFFFFFFF),  // Blanco puro
+            onPrimary = Color.White, // Texto blanco sobre el azul
+            onSecondary = Color.Black, // Texto negro sobre amarillo
+            onBackground = Color.Black, // Texto negro sobre fondo claro
+            onSurface = Color.Black // Texto negro sobre blanco
         )
     } else {
         // Colores para el modo noche
         darkColorScheme(
-            primary = Color(0xFFBB86FC),  // Púrpura claro
-            secondary = Color(0xFF03DAC6), // Verde agua
-            background = Color(0xFF121212), // Gris oscuro para el fondo de noche
-            surface = Color(0xFF121212),  // Fondo oscuro
-            onPrimary = Color.White, // Texto blanco sobre el púrpura
-            onSecondary = Color.White, // Texto blanco sobre el verde agua
+            primary = Color(0xFF0D47A1),  // Azul profundo
+            secondary = Color(0xFFFF6F00), // Naranja tenue
+            background = Color(0xFF121212), // Gris oscuro
+            surface = Color(0xFF1E1E1E),  // Gris suave
+            onPrimary = Color.White, // Texto blanco sobre el azul profundo
+            onSecondary = Color.White, // Texto blanco sobre naranja
             onBackground = Color.White, // Texto blanco sobre fondo oscuro
-            onSurface = Color.White // Texto blanco sobre superficie oscura
+            onSurface = Color.White // Texto blanco sobre gris oscuro
         )
     }
 
@@ -110,6 +110,7 @@ fun GameTheme(isDayTime: Boolean, content: @Composable () -> Unit) {
         content = content
     )
 }
+
 
 @Composable
 fun MainMenuScreen(
