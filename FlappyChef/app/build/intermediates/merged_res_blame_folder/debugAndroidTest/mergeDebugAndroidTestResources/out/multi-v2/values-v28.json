@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "game.flappychef.test.app-mergeDebugAndroidTestResources-32:/values-v28/values-v28.xml",
+            "outputFile": "game.flappychef.test.app-mergeDebugAndroidTestResources-34:/values-v28/values-v28.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\danie\\.gradle\\caches\\8.9\\transforms\\eb422d1352f1a8e2f2c80a7bb2fb48d6\\transformed\\core-1.6.1\\res\\values-v28\\values.xml",
+                    "source": "C:\\Users\\danie\\.gradle\\caches\\8.9\\transforms\\df546a2f1c33ea0395fa98f9e3933ece\\transformed\\core-1.6.1\\res\\values-v28\\values.xml",
                     "from": {
                         "startLines": "4,13",
                         "startColumns": "0,0",

@@ -983,6 +983,8 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable fondo_dia
 drawable fondo_noche
+drawable fondo_principal_dia
+drawable fondo_principal_noche
 drawable ic_call_answer
 drawable ic_call_answer_low
 drawable ic_call_answer_video
@@ -1011,6 +1013,8 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable olla
+drawable powerup_invencible
+drawable powerup_slow
 drawable te_quemas
 drawable tenedor
 drawable tooltip_frame_dark

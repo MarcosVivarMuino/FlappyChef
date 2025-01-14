@@ -10,9 +10,13 @@ color white
 drawable bola_fuego
 drawable fondo_dia
 drawable fondo_noche
+drawable fondo_principal_dia
+drawable fondo_principal_noche
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable olla
+drawable powerup_invencible
+drawable powerup_slow
 drawable te_quemas
 drawable tenedor
 drawable torre_alta

@@ -6,10 +6,13 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -18,6 +21,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,7 +32,6 @@ class InstructionsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Obtener la hora actual y determinar si es de día o de noche
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val isDayTime = currentHour in 8..17
         Log.d("InstructionsActivity", "Current hour: $currentHour, Is it day time? $isDayTime")
@@ -51,30 +55,77 @@ fun InstructionsScreen(onBackClick: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        // Título con el color adecuado según el tema
         Text(
             text = "Instrucciones",
-            fontSize = 28.sp,
+            fontSize = 38.sp,
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.primary,
         )
 
-        // Texto de las instrucciones con el color adecuado según el tema
+
         Text(
-            text = "1. Toca la pantalla para que el personaje vuele.\n" +
+            text = "1. Inclina el móvil para que el personaje se mueva.\n" +
                     "2. Evita los obstáculos para no perder.\n" +
-                    "3. Sopla al dispositivo para apagar el fuego si el personaje se incendia.\n" +
-                    "4. Agita el dispositivo para usar los Power Ups que recojas.",
+                    "3. Que no te pinchen los tenedores.\n" +
+                    "4. Sopla al dispositivo para apagar el fuego si el personaje se incendia.\n" +
+                    "5. Usa los potenciadores para ayudarte.",
             fontSize = 18.sp,
             modifier = Modifier.padding(16.dp),
-            color = MaterialTheme.colorScheme.onBackground // Texto blanco si es de noche, negro si es de día
+            color = MaterialTheme.colorScheme.onBackground
         )
 
-        // Botón "Volver" con color adecuado según el tema
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Potenciadores",
+                fontSize = 28.sp,
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            Text(
+                text = "INMUNIDAD: Te hace invencible a las torres de platos por un tiempo.",
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.padding(8.dp)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.powerup_invencible),
+                contentDescription = "PowerUp de Inmunidad",
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+                    .height(80.dp),
+                contentScale = ContentScale.Fit
+            )
+
+            Text(
+                text = "RALENTIZACIÓN: Hace que los enemigos 'tenedores' se muevan más despacio.",
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.padding(8.dp)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.powerup_slow),
+                contentDescription = "PowerUp de Ralentización",
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+                    .height(80.dp),
+                contentScale = ContentScale.Fit
+            )
+
+        }
         Button(onClick = onBackClick, modifier = Modifier.padding(8.dp)) {
             Text(
                 text = "Volver",
-                color = MaterialTheme.colorScheme.onPrimary // Texto negro si es de día, blanco si es de noche
+                fontSize = 28.sp,
+
+                color = MaterialTheme.colorScheme.onPrimary
             )
         }
     }

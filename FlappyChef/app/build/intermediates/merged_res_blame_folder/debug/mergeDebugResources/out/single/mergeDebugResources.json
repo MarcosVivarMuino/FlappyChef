@@ -1,5 +1,9 @@
 [
     {
+        "merged": "game.flappychef.app-debug-61:/drawable_powerup_slow.png.flat",
+        "source": "game.flappychef.app-main-63:/drawable/powerup_slow.png"
+    },
+    {
         "merged": "game.flappychef.app-debug-61:/drawable_ic_launcher_foreground.xml.flat",
         "source": "game.flappychef.app-main-63:/drawable/ic_launcher_foreground.xml"
     },
@@ -72,6 +76,10 @@
         "source": "game.flappychef.app-main-63:/raw/sonido_powerup.mp3"
     },
     {
+        "merged": "game.flappychef.app-debug-61:/drawable_fondo_principal_noche.png.flat",
+        "source": "game.flappychef.app-main-63:/drawable/fondo_principal_noche.png"
+    },
+    {
         "merged": "game.flappychef.app-debug-61:/raw_dano.mp3.flat",
         "source": "game.flappychef.app-main-63:/raw/dano.mp3"
     },
@@ -82,6 +90,10 @@
     {
         "merged": "game.flappychef.app-debug-61:/drawable_fondo_noche.png.flat",
         "source": "game.flappychef.app-main-63:/drawable/fondo_noche.png"
+    },
+    {
+        "merged": "game.flappychef.app-debug-61:/drawable_powerup_invencible.png.flat",
+        "source": "game.flappychef.app-main-63:/drawable/powerup_invencible.png"
     },
     {
         "merged": "game.flappychef.app-debug-61:/mipmap-mdpi_ic_launcher.webp.flat",
@@ -154,5 +166,9 @@
     {
         "merged": "game.flappychef.app-debug-61:/drawable_ic_launcher_background.xml.flat",
         "source": "game.flappychef.app-main-63:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "game.flappychef.app-debug-61:/drawable_fondo_principal_dia.jpg.flat",
+        "source": "game.flappychef.app-main-63:/drawable/fondo_principal_dia.jpg"
     }
 ]

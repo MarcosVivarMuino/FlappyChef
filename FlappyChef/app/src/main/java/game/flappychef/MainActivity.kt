@@ -2,13 +2,13 @@ package game.flappychef
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -16,15 +16,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.TextStyle
 import androidx.core.content.ContextCompat
-import androidx.core.app.ActivityCompat
-import game.flappychef.R
 
 
 class MainActivity : ComponentActivity() {
@@ -48,10 +45,9 @@ class MainActivity : ComponentActivity() {
                 android.Manifest.permission.RECORD_AUDIO
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            // Permiso ya concedido
             Log.d("MainActivity", "Permiso para grabar audio ya concedido.")
         } else {
-            // Si no tenemos el permiso, lo solicitamos
+            //            // Si no tenemos el permiso, lo solicitamos
             requestPermissionLauncher.launch(android.Manifest.permission.RECORD_AUDIO)
         }
 
@@ -73,34 +69,34 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+
     }
 }
-
 @Composable
 fun GameTheme(isDayTime: Boolean, content: @Composable () -> Unit) {
+
+    // Se usan colores según el tema de día o noche
     val colors = if (isDayTime) {
-        // Colores para el modo día
         lightColorScheme(
-            primary = Color(0xFF2196F3),  // Azul cielo
-            secondary = Color(0xFFFFC107), // Amarillo cálido
-            background = Color(0xFFE3F2FD), // Azul muy claro
-            surface = Color(0xFFFFFFFF),  // Blanco puro
-            onPrimary = Color.White, // Texto blanco sobre el azul
-            onSecondary = Color.Black, // Texto negro sobre amarillo
-            onBackground = Color.Black, // Texto negro sobre fondo claro
-            onSurface = Color.Black // Texto negro sobre blanco
+            primary = Color(0xFF2196F3),
+            secondary = Color(0xFFFF6F00),
+            background = Color(0xFFE3F2FD),
+            surface = Color(0xFFFFFFFF),
+            onPrimary = Color.White,
+            onSecondary = Color.Black,
+            onBackground = Color.Black,
+            onSurface = Color.Black
         )
     } else {
-        // Colores para el modo noche
         darkColorScheme(
-            primary = Color(0xFF0D47A1),  // Azul profundo
-            secondary = Color(0xFFFF6F00), // Naranja tenue
-            background = Color(0xFF121212), // Gris oscuro
-            surface = Color(0xFF1E1E1E),  // Gris suave
-            onPrimary = Color.White, // Texto blanco sobre el azul profundo
-            onSecondary = Color.White, // Texto blanco sobre naranja
-            onBackground = Color.White, // Texto blanco sobre fondo oscuro
-            onSurface = Color.White // Texto blanco sobre gris oscuro
+            primary = Color(0xFF0D47A1),
+            secondary = Color(0xFF812E0D),
+            background = Color(0xFF121212),
+            surface = Color(0xFF1E1E1E),
+            onPrimary = Color.White,
+            onSecondary = Color.White,
+            onBackground = Color.White,
+            onSurface = Color.White
         )
     }
 
@@ -118,102 +114,94 @@ fun MainMenuScreen(
     onInstructionsClick: () -> Unit,
     onSettingsClick: () -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background) // Fondo que se adapta al tema
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        // Título con el color adecuado según el tema
-        Text(
-            text = "Flappy Chef",
-            fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary, // Color del título adaptado al tema
-            style = TextStyle(letterSpacing = 3.sp)
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Imagen central relacionada con la temática de un cocinero
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground), // Cambia por una imagen de un chef volador
-            contentDescription = "Imagen del juego",
-            modifier = Modifier
-                .size(250.dp)
-                .padding(16.dp) // Espacio alrededor de la imagen
-        )
-
-        Spacer(modifier = Modifier.height(40.dp))
-
-        // Botones con bordes redondeados y colores vivos
-        Button(
-            onClick = onPlayClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .padding(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary), // Color de fondo del botón según el tema
-            shape = RoundedCornerShape(12.dp)
-        ) {
-            Text(
-                text = "Jugar",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimary // El texto se ajusta al tema
-            )
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Button(
-            onClick = onInstructionsClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .padding(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary), // Color de fondo del botón según el tema
-            shape = RoundedCornerShape(12.dp)
-        ) {
-            Text(
-                text = "Instrucciones",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSecondary // El texto se ajusta al tema
-            )
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Button(
-            onClick = onSettingsClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .padding(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary), // Color de fondo del botón según el tema
-            shape = RoundedCornerShape(12.dp)
-        ) {
-            Text(
-                text = "Ajustes",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSecondary // El texto se ajusta al tema
-            )
-        }
+    val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+    val backgroundRes = if (currentHour in 8..17) {
+        R.drawable.fondo_principal_dia
+    } else {
+        R.drawable.fondo_principal_noche
     }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun MainMenuScreenPreview() {
-    GameTheme(isDayTime = true) {
-        MainMenuScreen(
-            onPlayClick = {},
-            onInstructionsClick = {},
-            onSettingsClick = {}
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = backgroundRes),
+            contentDescription = "Imagen de fondo del juego",
+            modifier = Modifier
+                .fillMaxSize()
+                .align(Alignment.Center),
+            contentScale = ContentScale.Crop
         )
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize().padding(16.dp)
+        ) {
+            Spacer(modifier = Modifier.height(400.dp))
+
+            Button(
+                onClick = onPlayClick,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .height(56.dp)
+                    .fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "Jugar",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = onInstructionsClick,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .height(56.dp)
+                    .fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                ),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "Instrucciones",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSecondary
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = onSettingsClick,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .height(56.dp)
+                    .fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                ),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "Ajustes",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSecondary
+                )
+            }
+        }
     }
 }

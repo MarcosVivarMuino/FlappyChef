@@ -1,6 +1,5 @@
 package game.flappychef
 
-
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -23,15 +22,16 @@ import androidx.compose.ui.unit.sp
 class GameOverActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
+        val finalScore = intent.getIntExtra("finalScore", 0)
 
-            // Obtener la hora actual y determinar si es de día o de noche
+        setContent {
             val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
             val isDayTime = currentHour in 8..17
             Log.d("InstructionsActivity", "Current hour: $currentHour, Is it day time? $isDayTime")
 
             GameTheme(isDayTime = isDayTime){
                 GameOverScreen(
+                    finalScore,
                     onRetryClick = {
                         val intent = Intent(this, GameActivity::class.java)
                         startActivity(intent)
@@ -50,7 +50,7 @@ class GameOverActivity : ComponentActivity() {
 }
 
 @Composable
-fun GameOverScreen(onRetryClick: () -> Unit, onExitClick: () -> Unit) {
+fun GameOverScreen(finalScore: Int, onRetryClick: () -> Unit, onExitClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -58,33 +58,54 @@ fun GameOverScreen(onRetryClick: () -> Unit, onExitClick: () -> Unit) {
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-
     ) {
-        Text(text = "¡Game Over!", fontSize = 36.sp, color = MaterialTheme.colorScheme.primary)
+        Text(
+            text = "¡Game Over!",
+            fontSize = 38.sp,
+            color = MaterialTheme.colorScheme.primary
+        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
+        Text(
+            text = "Puntuación Final: $finalScore",
+            fontSize = 30.sp,
+            color = MaterialTheme.colorScheme.primary
+        )
+
+        Spacer(modifier = Modifier.height(40.dp))
         Button(onClick = onRetryClick,
             modifier = Modifier
-
+                .padding(8.dp)
                 .height(56.dp)
-                .padding(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                .fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
+            ),
             shape = RoundedCornerShape(12.dp)
         ) {
-            Text("Reintentar", color = MaterialTheme.colorScheme.onSurface)
+            Text("Reintentar",
+                fontSize = 28.sp,
+                color = MaterialTheme.colorScheme.onPrimary)
         }
 
         Spacer(modifier = Modifier.height(10.dp))
 
         Button(onClick = onExitClick,
             modifier = Modifier
-
+                .padding(8.dp)
                 .height(56.dp)
-                .padding(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
-            shape = RoundedCornerShape(12.dp)) {
-            Text("Menu principal", color = MaterialTheme.colorScheme.onSurface)
+                .fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = MaterialTheme.colorScheme.onSecondary
+            ),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Text("Menu principal",
+                fontSize = 28.sp,
+                color = MaterialTheme.colorScheme.onSecondary)
         }
     }
 }

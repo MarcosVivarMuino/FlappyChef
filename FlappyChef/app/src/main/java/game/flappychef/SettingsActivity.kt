@@ -41,7 +41,6 @@ class SettingsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Obtener si es de día o noche
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val isDayTime = currentHour in 8..17 // Es de día si la hora está entre las 8 AM y las 5 PM
 
@@ -57,24 +56,26 @@ class SettingsActivity : ComponentActivity() {
 fun SettingsScreen(onBackClick: () -> Unit) {
     val context = LocalContext.current
     val prefs = context.getSharedPreferences("game_prefs", Context.MODE_PRIVATE)
-    val window = (LocalView.current.context as ComponentActivity).window
     val audioManager = context.getSystemService(AudioManager::class.java)
 
-    var brightness by remember { mutableStateOf(prefs.getFloat("brightness", 0.5f)) }
     var volume by remember { mutableStateOf(prefs.getFloat("volume", audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) /
             audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC).toFloat())) }
 
-    var profileImageUri by remember { mutableStateOf(prefs.getString("profile_image", null)) }
+    var profileImagePath by remember { mutableStateOf(prefs.getString("profile_image", null)) }
 
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
         bitmap?.let {
+            val playerWidth = 100
+            val playerHeight = 100
+            val resizedBitmap = Bitmap.createScaledBitmap(it, playerWidth, playerHeight, true)
             val file = File(context.filesDir, "profile_image.png")
+
             try {
                 FileOutputStream(file).use { fos ->
-                    it.compress(Bitmap.CompressFormat.PNG, 100, fos)
+                    resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
                 }
                 prefs.edit().putString("profile_image", file.absolutePath).apply()
-                profileImageUri = file.absolutePath
+                profileImagePath = file.absolutePath
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -91,12 +92,12 @@ fun SettingsScreen(onBackClick: () -> Unit) {
     ) {
         Text(
             text = "Ajustes",
-            fontSize = 28.sp,
+            fontSize = 38.sp,
             color = MaterialTheme.colorScheme.primary,
             style = MaterialTheme.typography.headlineMedium
         )
 
-        profileImageUri?.let {
+        profileImagePath?.let {
             val bitmap = BitmapFactory.decodeFile(it)
             Image(bitmap = bitmap.asImageBitmap(), contentDescription = "Perfil", modifier = Modifier.size(100.dp))
         } ?: Image(
@@ -106,24 +107,16 @@ fun SettingsScreen(onBackClick: () -> Unit) {
         )
 
         Button(onClick = { launcher.launch() }, modifier = Modifier.padding(8.dp)) {
-            Text(text = "Cambiar Foto de Perfil")
+            Text(text = "Cambiar Foto de Perfil",
+                fontSize = 28.sp
+            )
         }
 
-        Text(text = "Brillo", modifier = Modifier.padding(8.dp), color = MaterialTheme.colorScheme.onBackground)
-        Slider(
-            value = brightness,
-            onValueChange = {
-                brightness = it
-                val layoutParams = window.attributes
-                layoutParams.screenBrightness = it
-                window.attributes = layoutParams
-                prefs.edit().putFloat("brightness", it).apply()
-            },
-            valueRange = 0.1f..1f,
-            modifier = Modifier.padding(8.dp)
-        )
+        Text(text = "Volumen",
+            fontSize = 28.sp,
+            modifier = Modifier.padding(8.dp),
+            color = MaterialTheme.colorScheme.onBackground)
 
-        Text(text = "Volumen", modifier = Modifier.padding(8.dp), color = MaterialTheme.colorScheme.onBackground)
         Slider(
             value = volume,
             onValueChange = {
@@ -140,16 +133,9 @@ fun SettingsScreen(onBackClick: () -> Unit) {
         )
 
         Button(onClick = onBackClick, modifier = Modifier.padding(8.dp)) {
-            Text(text = "Volver")
+            Text(text = "Volver",
+                fontSize = 28.sp
+            )
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun SettingsScreenPreview() {
-    GameTheme(isDayTime = true) {
-        SettingsScreen(onBackClick = {})
-    }
-}
-
