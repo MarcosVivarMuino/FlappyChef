@@ -1,4 +1,4 @@
-#Flappy Chef
+# Flappy Chef
 
 ##🌍 Descripción
 Flappy Chef es un juego para dispositivos móviles inspirado en el clásico Flappy Bird, pero con una temática única relacionada con la cocina. El objetivo es controlar a un chef volador mientras esquiva diferentes obstáculos en su camino, como torres de platos y tenedores, todo en un entorno de restaurante caótico pero divertido.
